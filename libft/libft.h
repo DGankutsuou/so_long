@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:35:25 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/01/18 14:17:19 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:56:59 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ t_stack	*lst_largest_idx(t_stack *stack, int *index);
 t_stack	*lst_largest(t_stack *stack);
 t_stack	*lst_smallest_idx(t_stack *stack, int *index);
 t_stack	*lst_closest_idx(t_stack *stk, long *arr, int *idxs, int *index);
+int		ft_charcmp(char char1, char char2);
 
 #endif
