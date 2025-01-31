@@ -16,7 +16,7 @@ void	map_validator(char *map, t_map_d *map_d)
 	while (line = get_next_line(fd))
 	{
 		map_d->rows++;
-		
+		map_d->coloms = ft_strlen(line);
 		free (line);
 	}
 }
