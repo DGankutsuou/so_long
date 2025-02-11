@@ -12,5 +12,6 @@ typedef struct s_map_d
 }	t_map_d;
 
 void	map_validator(char *map, t_map_d *map_d);
+void	error(char *msg, int stat);
 
 #endif
