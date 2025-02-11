@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/11 16:39:23 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/11 21:26:04 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
-typedef struct s_map_d
+typedef struct s_map
 {
 	int	rows;
 	int	coloms;
-}	t_map_d;
+}	t_map;
 
-void	map_validator(char *map, t_map_d *map_d);
+void	map_validator(char *map, t_map *map_in);
 void	error(char *msg, int stat);
 
 #endif
