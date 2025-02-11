@@ -2,8 +2,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c error.c map_validator.c
-
+SRC = main.c error.c map_validator.c get_next_line.c\
+		get_next_line_utils.c libft/libft.a
 NAME = so_long
 
 all: $(NAME)
