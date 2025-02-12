@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 20:50:40 by aabouriz         ###   ########.fr       */
+/*   Created: 2025/02/12 20:50:59 by aabouriz          #+#    #+#             */
+/*   Updated: 2025/02/12 21:00:31 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "get_next_line.h"
-# include "libft/libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-
-typedef struct s_map
+void	flood_fill(t_map *map, int x, int y)
 {
-	int		rows;
-	int		coloms;
-	char	**grid;
-	int		p_xy[2];
-	int		p_e[2];
-	int		collectees;
-}	t_map;
-
-void	map_validator(char *map, t_map *map_in);
-void	error(char *msg, int stat);
-void	free_map(char **map);
-
-#endif
+	if(map->grid[y][x] == '0')
+	else if(map->grid[y][x] == '1')
+		return ;
+	else if(map->grid[y][x] == 'E')
+	else if(map->grid[y][x] == 'C')
+	else
+	{
+		free_map(map->grid);
+		error("Error\nmap must only containe: 0, 1, P, C, E")
+	}
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x, y + 1);
+	flood_fill(map, x, y - 1);
+}

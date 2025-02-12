@@ -6,16 +6,11 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 19:46:23 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 20:49:03 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// static flood_fill(char **grid, t_map *map_inf)
-// {
-
-// }
 
 static void	validate_walls(char **grid, t_map *map_inf)
 {
@@ -105,6 +100,7 @@ void	map_validator(char *map, t_map *map_inf)
 	yx_counter(map, map_inf);
 	matrix_maker(map, map_inf);
 	validate_walls(map_inf->grid, map_inf);
+	flood_fill();
 	row = 0;
 	printf ("%d / %d\n", map_inf->rows, map_inf->coloms);
 	while (row < map_inf->rows)
