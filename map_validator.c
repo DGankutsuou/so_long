@@ -6,11 +6,16 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 18:33:05 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:50:16 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static flood_fill()
+{
+
+}
 
 static void	yx_counter(char *map, t_map *map_inf)
 {
@@ -46,7 +51,7 @@ static void	matrix_maker(char *map, t_map *map_inf)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		perror(map);
-	map_inf->grid = malloc(map_inf->rows + 1);
+	map_inf->grid = malloc((map_inf->rows + 1) * 8);
 	if (!map_inf->grid)
 		perror("malloc");
 	row = 0;
@@ -68,14 +73,15 @@ void	map_validator(char *map, t_map *map_inf)
 	int		fd;
 	int		row;
 
-	if(ft_strlen(map) < 5)
+	if (ft_strlen(map) < 5)
 		error("Error\ninvalid map file", 1);
 	else if (ft_strncmp(map + ft_strlen(map) - 4, ".ber", 5) != 0)
 		error("Error\ninvalid map file", 1);
 	yx_counter(map, map_inf);
 	matrix_maker(map, map_inf);
 	row = 0;
-	while(row < map_inf->rows)
+	printf ("%d / %d\n", map_inf->rows, map_inf->coloms);
+	while (row < map_inf->rows)
 	{
 		printf ("-> %s\n", (map_inf->grid)[row]);
 		row++;
