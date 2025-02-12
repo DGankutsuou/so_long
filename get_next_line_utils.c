@@ -6,13 +6,13 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:21:15 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/03 19:11:26 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:34:39 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen_bonus(const char *s)
+size_t	ft_strlen_get(const char *s)
 {
 	size_t	len;
 
@@ -31,11 +31,11 @@ char	*ft_strdup(const char *s1)
 
 	if (!s1)
 		return (NULL);
-	len = ft_strlen_bonus(s1);
+	len = ft_strlen_get(s1);
 	ptr = (char *)malloc(len + 1);
 	if (!ptr)
 		return (NULL);
-	ft_strlcpy(ptr, s1, len + 1);
+	ft_strlcpy_get(ptr, s1, len + 1);
 	return (ptr);
 }
 
@@ -64,7 +64,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen_bonus (s);
+	s_len = ft_strlen_get (s);
 	if (start >= s_len)
 		return (ft_strdup (""));
 	if (len > s_len - start)
@@ -72,11 +72,11 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	ptr = (char *)malloc(len + 1);
 	if (!ptr)
 		return (NULL);
-	ft_strlcpy(ptr, &(s[start]), len + 1);
+	ft_strlcpy_get(ptr, &(s[start]), len + 1);
 	return (ptr);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy_get(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 
@@ -92,5 +92,5 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		}
 		dst[i] = '\0';
 	}
-	return (ft_strlen_bonus(src));
+	return (ft_strlen_get(src));
 }

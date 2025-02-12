@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:21:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/01/31 18:19:14 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:34:52 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ char	*ft_strjoin_and_free(char const *s1, char const *s2)
 		return ((char *)s2);
 	else if (!s2)
 		return ((char *)s1);
-	s1_len = ft_strlen_bonus(s1);
-	s2_len = ft_strlen_bonus(s2);
+	s1_len = ft_strlen_get(s1);
+	s2_len = ft_strlen_get(s2);
 	join = (char *)malloc(s1_len + s2_len + 1);
 	if (!join)
 		return (NULL);
-	ft_strlcpy(join, s1, s1_len + 1);
+	ft_strlcpy_get(join, s1, s1_len + 1);
 	i = 0;
 	while (s2[i] && i < s2_len)
 	{

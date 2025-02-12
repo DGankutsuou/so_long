@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dup_checker.c                                      :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 18:38:04 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/01/14 18:25:58 by aabouriz         ###   ########.fr       */
+/*   Created: 2025/02/12 18:25:47 by aabouriz          #+#    #+#             */
+/*   Updated: 2025/02/12 18:26:45 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-#include "libft.h"
-
-int	dup_checker(t_stack *lst, long val)
+void	free_map(char **map)
 {
-	while (lst)
+	char	**saver;
+
+	saver = map;
+	while (*map)
 	{
-		if (lst->value == val)
-			return (1);
-		lst = lst->next;
+		free (*map);
+		map++;
 	}
-	return (0);
+	free (saver);
 }

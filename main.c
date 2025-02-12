@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:57:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/11 21:26:31 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:44:59 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	map_in;
+	t_map	map_inf;
 
 	if (argc != 2)
 		error("Error: didn't recieve map", 1);
-	map_validator(argv[1], &map_d);
+	map_validator(argv[1], &map_inf);
 	return (0);
 }

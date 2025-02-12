@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:21:12 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/01/31 18:18:54 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:35:00 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 char	*get_next_line(int fd);
 void	fill_storage(int fd, char **storage);
 char	*get_line(char **storage);
-size_t	ft_strlen_bonus(const char *s);
+size_t	ft_strlen_get(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 size_t	get_line_len(char *str);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t	ft_strlcpy_get(char *dst, const char *src, size_t size);
 char	*ft_strjoin_and_free(char const *s1, char const *s2);
 #endif

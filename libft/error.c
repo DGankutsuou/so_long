@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 10:56:43 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/01/09 10:24:18 by aabouriz         ###   ########.fr       */
+/*   Created: 2025/02/04 18:56:05 by aabouriz          #+#    #+#             */
+/*   Updated: 2025/02/12 10:52:18 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_stack **lst, t_stack *new)
+void	error(char *msg, int stat)
 {
-	if (lst && new)
-	{
-		new->next = *lst;
-		*lst = new;
-	}
+	ft_putendl_fd(msg, 2);
+	exit(stat);
 }
