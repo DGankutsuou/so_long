@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_macker.c                                    :+:      :+:    :+:   */
+/*   matrix_maker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:44:37 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 15:15:25 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:40:47 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	matrix_macker(char *map, t_map *map_inf)
+void	matrix_maker(char *map, t_map *map_inf)
 {
 	char	*line;
 	int		fd;
@@ -27,9 +27,12 @@ void	matrix_macker(char *map, t_map *map_inf)
 	row = 0;
 	while (row < map_inf->rows)
 	{
-		ft_strlcpy()
+		map_inf->grid[row] = malloc(map_inf->coloms + 1);
+		ft_strlcpy(map_inf->grid[row], line, map_inf->coloms + 1);
 		free(line);
 		line = get_next_line(fd);
+		row++;
 	}
+	map_inf->grid[row] = NULL;
 	close(fd);
 }
