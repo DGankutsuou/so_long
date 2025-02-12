@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:12:40 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 19:18:14 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:43:18 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int	ft_strchar_cmp(char *str, char c)
 			return (*str - c);
 		str++;
 	}
-	return (0)
+	return (0);
 }

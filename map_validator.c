@@ -6,18 +6,18 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 19:27:47 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:46:23 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static flood_fill(char **grid, t_map *map_inf)
-{
+// static flood_fill(char **grid, t_map *map_inf)
+// {
 
-}
+// }
 
-static validate_walls(char **grid, t_map *map_inf)
+static void	validate_walls(char **grid, t_map *map_inf)
 {
 	int	row;
 
@@ -25,11 +25,20 @@ static validate_walls(char **grid, t_map *map_inf)
 	while (row < map_inf->rows)
 	{
 		if (row == 0 || row == map_inf->rows - 1)
+		{
 			if(ft_strchar_cmp(map_inf->grid[row], '1') != 0)
 			{
 				free_map(map_inf->grid);
 				error("Error\nmap is not surrounded by walls", 1);
 			}
+		}
+		else if (map_inf->grid[row][0] != '1' || \
+		map_inf->grid[row][map_inf->coloms - 1] != '1')
+		{
+			free_map(map_inf->grid);
+			error("Error\nmap is not surrounded by walls", 1);
+		}
+		row++;
 	}
 }
 
@@ -95,6 +104,7 @@ void	map_validator(char *map, t_map *map_inf)
 		error("Error\ninvalid map file", 1);
 	yx_counter(map, map_inf);
 	matrix_maker(map, map_inf);
+	validate_walls(map_inf->grid, map_inf);
 	row = 0;
 	printf ("%d / %d\n", map_inf->rows, map_inf->coloms);
 	while (row < map_inf->rows)
