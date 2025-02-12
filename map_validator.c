@@ -6,15 +6,31 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 18:50:16 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:27:47 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static flood_fill()
+static flood_fill(char **grid, t_map *map_inf)
 {
 
+}
+
+static validate_walls(char **grid, t_map *map_inf)
+{
+	int	row;
+
+	row = 0;
+	while (row < map_inf->rows)
+	{
+		if (row == 0 || row == map_inf->rows - 1)
+			if(ft_strchar_cmp(map_inf->grid[row], '1') != 0)
+			{
+				free_map(map_inf->grid);
+				error("Error\nmap is not surrounded by walls", 1);
+			}
+	}
 }
 
 static void	yx_counter(char *map, t_map *map_inf)

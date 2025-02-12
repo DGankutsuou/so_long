@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:35:25 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 13:36:34 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:15:19 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	sherror(char *str, int stat);
 void	error(char *msg, int stat);
+int		ft_strchar_cmp(char *str, char c);
 
 #endif
