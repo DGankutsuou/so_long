@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 17:26:29 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:28:17 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,20 @@ static void	matrix_maker(char *map, t_map *map_inf)
 		perror(map);
 	map_inf->grid = malloc((map_inf->rows + 1) * 8);
 	if (!map_inf->grid)
-		perror("malloc");
+		error("Error\nmalloc() failed in matrix_maker()", 1);
 	row = 0;
 	while (row < map_inf->rows)
 	{
 		map_inf->grid[row] = malloc(map_inf->coloms + 1);
+		if (!map_inf->grid[y])
+		{
+			while (--y > 0)
+				free(map_inf->grid[y]);
+			free(map_inf->grid);
+		}
 		line = get_next_line(fd);
 		ft_strlcpy(map_inf->grid[row], line, map_inf->coloms + 1);
-		free(line);
-		row++;
+		(free(line), row++);
 	}
 	map_inf->grid[row] = NULL;
 	close(fd);
@@ -104,7 +109,6 @@ void	map_validator(char *map, t_map *map_inf)
 	matrix_maker(map, map_inf);
 	validate_walls(map_inf);
 	elements_validator(map_inf);
-	//flood_fill();
 	row = 0;
 	printf ("%d / %d\n", map_inf->rows, map_inf->coloms);
 	while (row < map_inf->rows)

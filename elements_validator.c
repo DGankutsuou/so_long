@@ -6,11 +6,35 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 18:02:57 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:20:14 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	copy_maker(t_map *map_inf)
+{
+	int	y;
+
+	y = 0;
+	map_inf->grid_copy = (char **)malloc((map_inf->rows + 1) * 8);
+	if (!map_inf->grid_copy)
+		error("Error\nmalloc faild in copy_maker()", 1);
+	while (y < map_inf->rows)
+	{
+		map_inf->grid_copy[y] = (char *)malloc(map_inf->coloms + 1);
+		if (!map_inf->grid_copy[y])
+		{
+			while (--y > 0)
+				free(map_inf->grid_copy[y]);
+			free_map(map_inf->grid);
+		}
+		ft_strlcpy(map_inf->grid_copy[y], map_inf->grid[y], \
+		map_inf->coloms + 1);
+		y++;
+	}
+	map_inf->grid_copy[y] = NULL;
+}
 
 static void	check_element(int y, int x, t_map *map_inf)
 {
