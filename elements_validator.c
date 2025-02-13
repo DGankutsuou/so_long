@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 17:55:02 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:02:57 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,15 @@ static void	flood_fill(t_map *map, int x, int y)
 	if (map->grid[y][x] == '1')
 		return ;
 	else if (map->grid[y][x] == 'E')
+	{
 		map->exit_counter--;
+		return ;
+	}
 	else if (map->grid[y][x] == 'C')
+	{
 		map->collectees--;
+		return ;
+	}
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x, y + 1);

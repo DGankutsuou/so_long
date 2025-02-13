@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 17:52:46 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:10:07 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_map
 	int		rows;
 	int		coloms;
 	char	**grid;
+	char	**grid_copy;
 	int		p_xy[2];
 	int		e_xy[2];
 	int		collectees;
