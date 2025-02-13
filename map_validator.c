@@ -6,11 +6,39 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 20:49:03 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:13:45 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	count_elements(char **grid, t_map *map_inf)
+{
+	int	row;
+	int	col;
+
+	row = 1;
+	map_inf->collectees = 0;
+	map_inf->player_counter = 0;
+	map_inf->exit_counter = 0;
+	while (row < map_inf->rows - 1)
+	{
+		col = 0;
+		while (col < map_inf->coloms)
+		{
+			if (map_inf->grid[row][col] == '0')
+				continue ;
+			else if (map_inf->grid[row][col] == 'C')
+				map_inf->collectees++;
+			else if (map_inf->grid[row][col] == 'P')
+				map_inf->player_counter++;
+			else if (map_inf->grid[row][col] == 'E')
+				map_inf->exit_counter++;
+			col++;
+		}
+		row++;
+	}
+}
 
 static void	validate_walls(char **grid, t_map *map_inf)
 {

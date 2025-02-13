@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 20:50:40 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:05:20 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_map
 	int		p_xy[2];
 	int		p_e[2];
 	int		collectees;
+	int		player_counter;
+	int		exit_counter;
 }	t_map;
 
 void	map_validator(char *map, t_map *map_in);
