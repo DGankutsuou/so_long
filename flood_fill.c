@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:50:59 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/12 21:00:31 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:35:54 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	flood_fill(t_map *map, int x, int y)
 	else
 	{
 		free_map(map->grid);
-		error("Error\nmap must only containe: 0, 1, P, C, E")
+		error("Error\nmap must only containe: 0, 1, P, C, E");
 	}
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
