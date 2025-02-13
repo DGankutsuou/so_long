@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 19:20:14 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:01:21 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	copy_maker(t_map *map_inf)
 		{
 			while (--y > 0)
 				free(map_inf->grid_copy[y]);
+			free(map_inf->grid_copy);
 			free_map(map_inf->grid);
 		}
 		ft_strlcpy(map_inf->grid_copy[y], map_inf->grid[y], \
@@ -84,18 +85,23 @@ static void	count_elements(t_map *map_inf)
 
 static void	flood_fill(t_map *map, int x, int y)
 {
-	if (map->grid[y][x] == '1')
+	if (map->grid_copy[y][x] == '1' || map->grid_copy[y][x] == '.')
 		return ;
-	else if (map->grid[y][x] == 'E')
+	else if (map->grid_copy[y][x] == '0')
+		map->grid_copy[y][x] = '.';
+	else if (map->grid_copy[y][x] == 'E')
 	{
 		map->exit_counter--;
-		return ;
+		map->grid_copy[y][x] = '.';
 	}
-	else if (map->grid[y][x] == 'C')
+	else if (map->grid_copy[y][x] == 'C')
 	{
+		map->grid_copy[y][x] == '.';
 		map->collectees--;
-		return ;
 	}
+	else
+		map->grid_copy[y][x] == '.';
+	printf ("hi\n");
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x, y + 1);
@@ -115,7 +121,14 @@ void	elements_validator(t_map *map_inf)
 		free_map(map_inf->grid);
 		error("Error\nThere should be at least one collectee", 1);
 	}
+	copy_maker(map_inf);
 	flood_fill(map_inf, map_inf->p_xy[0], map_inf->p_xy[1]);
+	int	row = 0;
+	while (row < map_inf->rows)
+	{
+		printf ("-> %s\n", (map_inf->grid_copy)[row]);
+		row++;
+	}
 	if (map_inf->exit_counter != 0 || map_inf->collectees != 0)
 	{
 		free_map(map_inf->grid);

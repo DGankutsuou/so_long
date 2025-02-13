@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 19:28:17 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:58:27 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,11 @@ static void	yx_counter(char *map, t_map *map_inf)
 		error("Error\nmap is not regtangular", 1);
 }
 
-static void	matrix_maker(char *map, t_map *map_inf)
+static void	matrix_maker(int fd, char *map, t_map *map_inf)
 {
 	char	*line;
-	int		fd;
 	int		row;
 
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
-		perror(map);
 	map_inf->grid = malloc((map_inf->rows + 1) * 8);
 	if (!map_inf->grid)
 		error("Error\nmalloc() failed in matrix_maker()", 1);
@@ -81,18 +77,19 @@ static void	matrix_maker(char *map, t_map *map_inf)
 	while (row < map_inf->rows)
 	{
 		map_inf->grid[row] = malloc(map_inf->coloms + 1);
-		if (!map_inf->grid[y])
+		if (!map_inf->grid[row])
 		{
-			while (--y > 0)
-				free(map_inf->grid[y]);
+			while (--row > 0)
+				free(map_inf->grid[row]);
 			free(map_inf->grid);
+			error("Error\nmalloc() failed in matrix_maker()", 1);
 		}
 		line = get_next_line(fd);
 		ft_strlcpy(map_inf->grid[row], line, map_inf->coloms + 1);
-		(free(line), row++);
+		free(line);
+		row++;
 	}
 	map_inf->grid[row] = NULL;
-	close(fd);
 }
 
 void	map_validator(char *map, t_map *map_inf)
@@ -105,8 +102,12 @@ void	map_validator(char *map, t_map *map_inf)
 		error("Error\ninvalid map file", 1);
 	else if (ft_strncmp(map + ft_strlen(map) - 4, ".ber", 5) != 0)
 		error("Error\ninvalid map file", 1);
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		perror(map);
 	yx_counter(map, map_inf);
-	matrix_maker(map, map_inf);
+	matrix_maker(fd, map, map_inf);
+	close(fd);
 	validate_walls(map_inf);
 	elements_validator(map_inf);
 	row = 0;
