@@ -3,7 +3,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = main.c error.c map_validator.c get_next_line.c\
-		get_next_line_utils.c libft/libft.a free_map.c
+		get_next_line_utils.c libft/libft.a free_map.c\
+		elements_validator.c
 
 NAME = so_long
 

@@ -6,41 +6,13 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 15:13:45 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:26:29 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	count_elements(char **grid, t_map *map_inf)
-{
-	int	row;
-	int	col;
-
-	row = 1;
-	map_inf->collectees = 0;
-	map_inf->player_counter = 0;
-	map_inf->exit_counter = 0;
-	while (row < map_inf->rows - 1)
-	{
-		col = 0;
-		while (col < map_inf->coloms)
-		{
-			if (map_inf->grid[row][col] == '0')
-				continue ;
-			else if (map_inf->grid[row][col] == 'C')
-				map_inf->collectees++;
-			else if (map_inf->grid[row][col] == 'P')
-				map_inf->player_counter++;
-			else if (map_inf->grid[row][col] == 'E')
-				map_inf->exit_counter++;
-			col++;
-		}
-		row++;
-	}
-}
-
-static void	validate_walls(char **grid, t_map *map_inf)
+static void	validate_walls(t_map *map_inf)
 {
 	int	row;
 
@@ -49,7 +21,7 @@ static void	validate_walls(char **grid, t_map *map_inf)
 	{
 		if (row == 0 || row == map_inf->rows - 1)
 		{
-			if(ft_strchar_cmp(map_inf->grid[row], '1') != 0)
+			if (ft_strchar_cmp(map_inf->grid[row], '1') != 0)
 			{
 				free_map(map_inf->grid);
 				error("Error\nmap is not surrounded by walls", 1);
@@ -80,7 +52,10 @@ static void	yx_counter(char *map, t_map *map_inf)
 		if (map_inf->rows == 0)
 			map_inf->coloms = ft_strlen(line) - 1;
 		else if (ft_strlen(line) - 1 != map_inf->coloms)
+		{
+			free(line);
 			error("Error\nmap is not regtangular", 1);
+		}
 		map_inf->rows++;
 		free(line);
 		line = get_next_line(fd);
@@ -127,8 +102,9 @@ void	map_validator(char *map, t_map *map_inf)
 		error("Error\ninvalid map file", 1);
 	yx_counter(map, map_inf);
 	matrix_maker(map, map_inf);
-	validate_walls(map_inf->grid, map_inf);
-	flood_fill();
+	validate_walls(map_inf);
+	elements_validator(map_inf);
+	//flood_fill();
 	row = 0;
 	printf ("%d / %d\n", map_inf->rows, map_inf->coloms);
 	while (row < map_inf->rows)
