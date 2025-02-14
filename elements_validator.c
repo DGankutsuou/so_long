@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 21:01:21 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/14 09:46:13 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,11 @@ static void	flood_fill(t_map *map, int x, int y)
 	}
 	else if (map->grid_copy[y][x] == 'C')
 	{
-		map->grid_copy[y][x] == '.';
+		map->grid_copy[y][x] = '.';
 		map->collectees--;
 	}
 	else
-		map->grid_copy[y][x] == '.';
-	printf ("hi\n");
+		map->grid_copy[y][x] = '.';
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x, y + 1);
@@ -132,6 +131,7 @@ void	elements_validator(t_map *map_inf)
 	if (map_inf->exit_counter != 0 || map_inf->collectees != 0)
 	{
 		free_map(map_inf->grid);
+		free_map(map_inf->grid_copy);
 		error("Error\nMap is not playable", 1);
 	}
 }
