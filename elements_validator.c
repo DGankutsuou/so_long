@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/14 09:46:13 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:09:53 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,16 +122,11 @@ void	elements_validator(t_map *map_inf)
 	}
 	copy_maker(map_inf);
 	flood_fill(map_inf, map_inf->p_xy[0], map_inf->p_xy[1]);
-	int	row = 0;
-	while (row < map_inf->rows)
-	{
-		printf ("-> %s\n", (map_inf->grid_copy)[row]);
-		row++;
-	}
 	if (map_inf->exit_counter != 0 || map_inf->collectees != 0)
 	{
 		free_map(map_inf->grid);
 		free_map(map_inf->grid_copy);
 		error("Error\nMap is not playable", 1);
 	}
+	free_map(map_inf->grid_copy);
 }

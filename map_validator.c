@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/13 20:58:27 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:14:52 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,26 +96,18 @@ void	map_validator(char *map, t_map *map_inf)
 {
 	char	*line;
 	int		fd;
-	int		row;
 
 	if (ft_strlen(map) < 5)
 		error("Error\ninvalid map file", 1);
 	else if (ft_strncmp(map + ft_strlen(map) - 4, ".ber", 5) != 0)
 		error("Error\ninvalid map file", 1);
+	yx_counter(map, map_inf);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		perror(map);
-	yx_counter(map, map_inf);
 	matrix_maker(fd, map, map_inf);
 	close(fd);
 	validate_walls(map_inf);
 	elements_validator(map_inf);
-	row = 0;
-	printf ("%d / %d\n", map_inf->rows, map_inf->coloms);
-	while (row < map_inf->rows)
-	{
-		printf ("-> %s\n", (map_inf->grid)[row]);
-		row++;
-	}
 	free_map(map_inf->grid);
 }
