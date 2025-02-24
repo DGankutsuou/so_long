@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/18 14:41:17 by blessed          ###   ########.fr       */
+/*   Updated: 2025/02/24 16:49:01 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ typedef struct s_map
 	int		exit_counter;
 }	t_map;
 
+typedef struct s_things
+{
+	void	*wall;
+}	t_things;
+
 void	elements_validator(t_map *map_inf);
 void	map_validator(char *map, t_map *map_in);
 void	error(char *msg, int stat);
 void	free_map(char **map);
+void	game_starter(t_map *minf, t_things *thing);
 
 #endif

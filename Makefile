@@ -2,16 +2,18 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c error.c map_validator.c get_next_line.c\
+MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+SRC = main.c libmlx_Linux.a error.c map_validator.c get_next_line.c\
 		get_next_line_utils.c libft/libft.a free_map.c\
-		elements_validator.c
+		elements_validator.c game_starter.c
 
 NAME = so_long
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CCFLAGS) $^ -o $@
+	$(CC) $(MLX_FLAGS) $(CCFLAGS) $^ -o $@
 
 libft/libft.a:
 	make -C libft

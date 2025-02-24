@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/14 15:14:52 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:47:23 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void	map_validator(char *map, t_map *map_inf)
 	close(fd);
 	validate_walls(map_inf);
 	elements_validator(map_inf);
-	free_map(map_inf->grid);
+	//free_map(map_inf->grid);
 }
