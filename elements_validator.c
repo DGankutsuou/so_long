@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/14 15:09:53 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 20:48:44 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ static void	flood_fill(t_map *map, int x, int y)
 
 void	elements_validator(t_map *map_inf)
 {
+	int	saver;
 	count_elements(map_inf);
 	if (map_inf->player_counter != 1 || map_inf->exit_counter != 1)
 	{
@@ -121,6 +122,7 @@ void	elements_validator(t_map *map_inf)
 		error("Error\nThere should be at least one collectee", 1);
 	}
 	copy_maker(map_inf);
+	saver = map_inf->collectees;
 	flood_fill(map_inf, map_inf->p_xy[0], map_inf->p_xy[1]);
 	if (map_inf->exit_counter != 0 || map_inf->collectees != 0)
 	{
@@ -128,5 +130,6 @@ void	elements_validator(t_map *map_inf)
 		free_map(map_inf->grid_copy);
 		error("Error\nMap is not playable", 1);
 	}
+	map_inf->collectees = saver;
 	free_map(map_inf->grid_copy);
 }

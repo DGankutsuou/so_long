@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/25 20:17:30 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 20:52:12 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 				mlx_put_image_to_window(mlx, win, thing->clct, x * 64, y * 64);
 			else if (minf->grid[y][x] == 'P')
 				mlx_put_image_to_window(mlx, win, thing->ply, x * 64, y * 64);
-			// else if (minf->grid[y][x] == 'E')
-			// 	mlx_put_image_to_window(mlx, win, thing->exit, x * 64, y * 64);
+			if (minf->collectees == 0 && minf->grid[y][x] == 'E')
+				mlx_put_image_to_window(mlx, win, thing->exit, x * 64, y * 64);
 			x++;
 		}
 		y++;
@@ -61,26 +61,42 @@ int	key_hook(int key, t_hook *hook)
 	}
 	else if (key == 119 && hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] != '1')
 	{
+		if (hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] == 'C')
+			hook->minf->collectees--;
+		else if (hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] == 'E')
+			exit(0);
 		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
-		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] = 'P';
 		hook->minf->p_xy[1] -= 1;
 	}
 	else if (key == 100 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] != '1')
 	{
+		if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] == 'C')
+			hook->minf->collectees--;
+		else if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] == 'E')
+			exit(0);
 		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
 		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
 		hook->minf->p_xy[0] += 1;
 	}
-	else if (key == 97 && hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] != '1')
+	else if (key == 97 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] != '1')
 	{
+		if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] == 'C')
+			hook->minf->collectees--;
+		else if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] == 'E')
+			exit(0);
 		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
-		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] = 'P';
 		hook->minf->p_xy[0] -= 1;
 	}
-	else if (key == 115 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] != '1')
+	else if (key == 115 && hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] != '1')
 	{
+		if (hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] == 'C')
+			hook->minf->collectees--;
+		else if (hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] == 'E')
+			exit(0);
 		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
-		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] = 'P';
 		hook->minf->p_xy[1] += 1;
 	}
 	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
