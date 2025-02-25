@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/25 20:11:32 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 21:22:35 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,9 @@ void	map_validator(char *map, t_map *map_in);
 void	error(char *msg, int stat);
 void	free_map(char **map);
 void	game_starter(t_map *minf, t_things *thing);
+void	up(t_hook *hook);
+void	right(t_hook *hook);
+void	left(t_hook *hook);
+void	down(t_hook *hook);
 
 #endif
