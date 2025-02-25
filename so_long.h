@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/24 17:54:08 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 09:51:00 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ typedef struct s_map
 typedef struct s_things
 {
 	void	*wall;
+	void	*ground;
+	void	*clct;
+	void	*ply;
+	void	*exit;
 }	t_things;
 
 void	elements_validator(t_map *map_inf);
