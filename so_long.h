@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/25 09:51:00 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 20:11:32 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ typedef struct s_things
 	void	*ply;
 	void	*exit;
 }	t_things;
+
+typedef struct s_hook
+{
+	t_map		*minf;
+	t_things	*thing;
+	void		*mlx;
+	void		*win;
+}	t_hook;
 
 void	elements_validator(t_map *map_inf);
 void	map_validator(char *map, t_map *map_in);

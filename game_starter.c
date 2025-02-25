@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/25 16:30:07 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 20:17:30 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,57 @@ void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 		{
 			if (minf->grid[y][x] == '1')
 				mlx_put_image_to_window(mlx, win, thing->wall, x * 64, y * 64);
-			else if (minf->grid[y][x] == '0')
+			else if (minf->grid[y][x] == '0' || minf->grid[y][x] == 'E')
 				mlx_put_image_to_window(mlx, win, thing->ground, x * 64, y * 64);
 			else if (minf->grid[y][x] == 'C')
 				mlx_put_image_to_window(mlx, win, thing->clct, x * 64, y * 64);
 			else if (minf->grid[y][x] == 'P')
 				mlx_put_image_to_window(mlx, win, thing->ply, x * 64, y * 64);
-			else if (minf->grid[y][x] == 'E')
-				mlx_put_image_to_window(mlx, win, thing->exit, x * 64, y * 64);
+			// else if (minf->grid[y][x] == 'E')
+			// 	mlx_put_image_to_window(mlx, win, thing->exit, x * 64, y * 64);
 			x++;
 		}
 		y++;
 	}
 }
 
+int	key_hook(int key, t_hook *hook)
+{
+	printf("-> %d\n", key);
+	if (key == 65307)
+	{
+		exit(0);
+	}
+	else if (key == 119 && hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] != '1')
+	{
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->p_xy[1] -= 1;
+	}
+	else if (key == 100 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] != '1')
+	{
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->p_xy[0] += 1;
+	}
+	else if (key == 97 && hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] != '1')
+	{
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->p_xy[0] -= 1;
+	}
+	else if (key == 115 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] != '1')
+	{
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0]] = '0';
+		hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] = 'P';
+		hook->minf->p_xy[1] += 1;
+	}
+	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+}
+
 void	game_starter(t_map *minf, t_things *thing)
 {
+	t_hook	hook;
 	void	*mlx;
 	void	*win;
 
@@ -62,5 +97,10 @@ void	game_starter(t_map *minf, t_things *thing)
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
 	draw_things(minf, thing, mlx, win);
+	hook.minf = minf;
+	hook.thing = thing;
+	hook.mlx = mlx;
+	hook.win = win;
+	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop(mlx);
 }
