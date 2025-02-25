@@ -6,11 +6,20 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/25 15:32:50 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:21:15 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	init_things(t_things *thing, void *mlx, void *win)
+{
+	thing->wall = mlx_xpm_file_to_image(mlx, "things/Wall.xpm", &x, &y);
+	thing->ground = mlx_xpm_file_to_image(mlx, "things/background.xpm", &x, &y);
+	thing->clct = mlx_xpm_file_to_image(mlx, "things/collect1.xpm", &x, &y);
+	thing->ply = mlx_xpm_file_to_image(mlx, "things/front_char1.xpm", &x, &y);
+	thing->exit = mlx_xpm_file_to_image(mlx, "things/exit.xpm", &x, &y);
+}
 
 void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 {
@@ -48,11 +57,6 @@ void	game_starter(t_map *minf, t_things *thing)
 	int h = 0;
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
-	thing->wall = mlx_xpm_file_to_image(mlx, "things/Wall.xpm", &w, &h);
-	thing->ground = mlx_xpm_file_to_image(mlx, "things/background.xpm", &w, &h);
-	thing->clct = mlx_xpm_file_to_image(mlx, "things/collect1.xpm", &w, &h);
-	thing->ply = mlx_xpm_file_to_image(mlx, "things/front_char1.xpm", &w, &h);
-	thing->exit = mlx_xpm_file_to_image(mlx, "things/exit.xpm", &w, &h);
 	draw_things(minf, thing, mlx, win);
 	mlx_loop(mlx);
 }
