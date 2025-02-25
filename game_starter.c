@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/25 16:21:15 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:26:40 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	init_things(t_things *thing, void *mlx, void *win)
 {
+	int	x;
+	int	y;
+
 	thing->wall = mlx_xpm_file_to_image(mlx, "things/Wall.xpm", &x, &y);
 	thing->ground = mlx_xpm_file_to_image(mlx, "things/background.xpm", &x, &y);
 	thing->clct = mlx_xpm_file_to_image(mlx, "things/collect1.xpm", &x, &y);
@@ -26,6 +29,7 @@ void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 	int	x;
 	int	y;
 
+	init_things(thing, mlx, win);
 	y = 0;
 	while (y < minf->rows)
 	{
