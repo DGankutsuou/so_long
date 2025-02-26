@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:20:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/25 20:48:44 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:31:28 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ static void	flood_fill(t_map *map, int x, int y)
 void	elements_validator(t_map *map_inf)
 {
 	int	saver;
+
 	count_elements(map_inf);
 	if (map_inf->player_counter != 1 || map_inf->exit_counter != 1)
 	{

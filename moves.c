@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 10:35:24 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:29:30 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	left(t_hook *hook)
 	hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] = 'P';
 	hook->minf->p_xy[0] -= 1;
 }
+
 void	down(t_hook *hook)
 {
 	ft_putstr_fd("-> ", 1);

@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/26 09:33:30 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:30:03 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	game_starter(t_map *minf, t_things *thing)
 	void	*mlx;
 	void	*win;
 
-	int w = 0;
-	int h = 0;
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
 	init_things(thing, mlx, win);
