@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/26 08:50:04 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 09:33:30 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.thing = thing;
 	hook.mlx = mlx;
 	hook.win = win;
+	hook.counter = 1;
 	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop(mlx);
 }

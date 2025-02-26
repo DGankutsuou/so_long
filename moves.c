@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 08:45:01 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 09:32:40 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	up(t_hook *hook)
 {
+	ft_putnbr_fd(hook->counter, 1);
+	hook->counter++;
 	if (hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] == 'C')
 		hook->minf->collectees--;
 	else if (hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] == 'E')
@@ -28,6 +30,8 @@ void	up(t_hook *hook)
 
 void	right(t_hook *hook)
 {
+	ft_putnbr_fd(hook->counter, 1);
+	hook->counter++;
 	if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] == 'C')
 		hook->minf->collectees--;
 	else if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] == 'E')
@@ -42,6 +46,8 @@ void	right(t_hook *hook)
 
 void	left(t_hook *hook)
 {
+	ft_putnbr_fd(hook->counter, 1);
+	hook->counter++;
 	if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] == 'C')
 		hook->minf->collectees--;
 	else if (hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] == 'E')
@@ -55,6 +61,8 @@ void	left(t_hook *hook)
 }
 void	down(t_hook *hook)
 {
+	ft_putnbr_fd(hook->counter, 1);
+	hook->counter++;
 	if (hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] == 'C')
 		hook->minf->collectees--;
 	else if (hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] == 'E')
