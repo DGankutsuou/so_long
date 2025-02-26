@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 11:29:07 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:57:34 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	yx_counter(char *map, t_map *map_inf)
 	{
 		if (map_inf->rows == 0)
 			map_inf->coloms = ft_strlen(line) - 1;
-		else if (ft_strlen(line) - 1 != map_inf->coloms)
+		else if (ft_strlen(line) - 1 != (size_t)map_inf->coloms)
 		{
 			free(line);
 			error("Error\nmap is not regtangular", 1);
@@ -65,7 +65,7 @@ static void	yx_counter(char *map, t_map *map_inf)
 		error("Error\nmap is not regtangular", 1);
 }
 
-static void	matrix_maker(int fd, char *map, t_map *map_inf)
+static void	matrix_maker(int fd, t_map *map_inf)
 {
 	char	*line;
 	int		row;
@@ -94,7 +94,6 @@ static void	matrix_maker(int fd, char *map, t_map *map_inf)
 
 void	map_validator(char *map, t_map *map_inf)
 {
-	char	*line;
 	int		fd;
 
 	if (ft_strlen(map) < 5)
@@ -105,7 +104,7 @@ void	map_validator(char *map, t_map *map_inf)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		perror(map);
-	matrix_maker(fd, map, map_inf);
+	matrix_maker(fd, map_inf);
 	close(fd);
 	validate_walls(map_inf);
 	elements_validator(map_inf);

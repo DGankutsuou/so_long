@@ -14,7 +14,7 @@ NAME = so_long
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $^ $(MLX_FLAGS) -o $@
+	$(CC) $(CFLAGS) $^ $(MLX_FLAGS) -o $@
 
 libft/libft.a:
 	make -C libft

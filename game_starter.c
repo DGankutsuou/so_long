@@ -6,13 +6,13 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/26 12:14:49 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:26:44 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_things(t_things *thing, void *mlx, void *win)
+void	init_things(t_things *thing, void *mlx)
 {
 	int	x;
 	int	y;
@@ -58,38 +58,62 @@ void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 
 int	key_hook(int key, t_hook *hook)
 {
+	int	x;
+	int	y;
+
+	x = hook->minf->p_xy[0];
+	y = hook->minf->p_xy[1];
 	if (key == 65307)
 	{
 		distroyer(hook);
 		exit(0);
 	}
-	else if (key == 119 && hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] != '1')
+	else if (key == 119 && hook->minf->grid[y - 1][x] != '1')
 		up(hook);
-	else if (key == 100 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] + 1] != '1')
+	else if (key == 100 && hook->minf->grid[y][x + 1] != '1')
 		right(hook);
-	else if (key == 97 && hook->minf->grid[hook->minf->p_xy[1]][hook->minf->p_xy[0] - 1] != '1')
+	else if (key == 97 && hook->minf->grid[y][x - 1] != '1')
 		left(hook);
-	else if (key == 115 && hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] != '1')
+	else if (key == 115 && hook->minf->grid[y + 1][x] != '1')
 		down(hook);
 	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+	return (0);
+}
 
+int	breath(t_hook *hook)
+{
+	int	sleeper;
+
+	sleeper = 0;
+	while (sleeper < 5000)
+		sleeper++;
+	hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[1], &sleeper, &sleeper);
+	(void)hook;
+	return (0);
 }
 
 void	game_starter(t_map *minf, t_things *thing)
 {
 	t_hook	hook;
+	t_anime	anime;
 	void	*mlx;
 	void	*win;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
-	init_things(thing, mlx, win);
+	init_things(thing, mlx);
 	draw_things(minf, thing, mlx, win);
 	hook.minf = minf;
 	hook.thing = thing;
 	hook.mlx = mlx;
 	hook.win = win;
 	hook.counter = 1;
+	hook.anime = &anime;
+	anime.mainp[0] = "front_char1";
+	anime.mainp[1] = "front_char2";
+	anime.mainp[2] = "front_char3";
+	anime.mainp[3] = "front_char4";
+	mlx_loop_hook(mlx, breath, &hook);
 	mlx_key_hook(win, key_hook, &hook);
 	//mlx_hook(win, 3, &hook)
 	mlx_loop(mlx);

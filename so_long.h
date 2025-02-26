@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 09:32:56 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:51:06 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,16 @@ typedef struct s_things
 	void	*exit;
 }	t_things;
 
+typedef struct s_anime
+{
+	char	*mainp[4];
+}	t_anime;
+
 typedef struct s_hook
 {
 	t_map		*minf;
 	t_things	*thing;
+	t_anime		*anime;
 	void		*mlx;
 	void		*win;
 	int			counter;
