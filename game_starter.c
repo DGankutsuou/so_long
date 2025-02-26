@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/26 17:26:44 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:46:05 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,14 @@ int	key_hook(int key, t_hook *hook)
 int	breath(t_hook *hook)
 {
 	int	sleeper;
+	int	x;
+	int	y;
 
 	sleeper = 0;
-	while (sleeper < 5000)
+	while (sleeper < 1000)
 		sleeper++;
-	hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[1], &sleeper, &sleeper);
+	hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[1], &x, &y);
+	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
 	(void)hook;
 	return (0);
 }
