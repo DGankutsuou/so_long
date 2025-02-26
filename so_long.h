@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/25 21:22:35 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 08:38:26 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	up(t_hook *hook);
 void	right(t_hook *hook);
 void	left(t_hook *hook);
 void	down(t_hook *hook);
+void	distroyer(t_hook *hook);
 
 #endif

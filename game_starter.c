@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/25 21:37:54 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 08:50:04 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	init_things(t_things *thing, void *mlx, void *win)
 	int	x;
 	int	y;
 
+	thing->wall = NULL;
+	thing->ground = NULL;
+	thing->clct = NULL;
+	thing->ply = NULL;
+	thing->exit = NULL;
 	thing->wall = mlx_xpm_file_to_image(mlx, "things/Wall.xpm", &x, &y);
 	thing->ground = mlx_xpm_file_to_image(mlx, "things/background.xpm", &x, &y);
 	thing->clct = mlx_xpm_file_to_image(mlx, "things/collect1.xpm", &x, &y);
@@ -29,7 +34,6 @@ void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 	int	x;
 	int	y;
 
-	init_things(thing, mlx, win);
 	y = 0;
 	while (y < minf->rows)
 	{
@@ -54,9 +58,9 @@ void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 
 int	key_hook(int key, t_hook *hook)
 {
-	printf("-> %d\n", key);
 	if (key == 65307)
 	{
+		distroyer(hook);
 		exit(0);
 	}
 	else if (key == 119 && hook->minf->grid[hook->minf->p_xy[1] - 1][hook->minf->p_xy[0]] != '1')
@@ -80,6 +84,7 @@ void	game_starter(t_map *minf, t_things *thing)
 	int h = 0;
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
+	init_things(thing, mlx, win);
 	draw_things(minf, thing, mlx, win);
 	hook.minf = minf;
 	hook.thing = thing;
