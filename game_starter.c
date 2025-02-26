@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/26 11:30:03 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:41:17 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	key_hook(int key, t_hook *hook)
 	else if (key == 115 && hook->minf->grid[hook->minf->p_xy[1] + 1][hook->minf->p_xy[0]] != '1')
 		down(hook);
 	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+
 }
 
 void	game_starter(t_map *minf, t_things *thing)
@@ -90,5 +91,6 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.win = win;
 	hook.counter = 1;
 	mlx_key_hook(win, key_hook, &hook);
+	mlx_hook(win, 3, &hook)
 	mlx_loop(mlx);
 }
