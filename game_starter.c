@@ -6,28 +6,11 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/27 08:59:55 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:36:15 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	init_things(t_things *thing, void *mlx)
-{
-	int	x;
-	int	y;
-
-	thing->wall = NULL;
-	thing->ground = NULL;
-	thing->clct = NULL;
-	thing->ply = NULL;
-	thing->exit = NULL;
-	thing->wall = mlx_xpm_file_to_image(mlx, "textures/Wall.xpm", &x, &y);
-	thing->ground = mlx_xpm_file_to_image(mlx, "textures/background.xpm", &x, &y);
-	thing->clct = mlx_xpm_file_to_image(mlx, "textures/collect1.xpm", &x, &y);
-	thing->ply = mlx_xpm_file_to_image(mlx, "textures/front_char1.xpm", &x, &y);
-	thing->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &x, &y);
-}
 
 void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
 {
@@ -68,15 +51,18 @@ int	key_hook(int key, t_hook *hook)
 		distroyer(hook);
 		exit(0);
 	}
-	else if (key == 119 && hook->minf->grid[y - 1][x] != '1')
-		up(hook);
-	else if (key == 100 && hook->minf->grid[y][x + 1] != '1')
-		right(hook);
-	else if (key == 97 && hook->minf->grid[y][x - 1] != '1')
-		left(hook);
-	else if (key == 115 && hook->minf->grid[y + 1][x] != '1')
-		down(hook);
-	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+	if (!hook->anime->is_player_mv)
+	{
+		else if (key == U && hook->minf->grid[y - 1][x] != '1')
+			up(hook);
+		else if (key == R && hook->minf->grid[y][x + 1] != '1')
+			right(hook);
+		else if (key == L && hook->minf->grid[y][x - 1] != '1')
+			left(hook);
+		else if (key == D && hook->minf->grid[y + 1][x] != '1')
+			down(hook);
+		draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+	}
 	return (0);
 }
 
@@ -89,12 +75,16 @@ int	breath(t_hook *hook)
 	hook->sleeper++;
 	if (hook->sleeper == 20000)
 	{
-		if (hook->thing->clct != NULL)
+		if (hook->thing->clct != NULL && !hook->anime->is_clct_mv)
+		{
 			mlx_destroy_image(hook->mlx, hook->thing->clct);
+			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->fram % 2], &x, &y);
+		}
 		if (hook->thing->ply != NULL)
-			mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->fram % 4], &x, &y);
-		hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->fram % 2], &x, &y);
+		{
+			mlx_destroy_image(hook->mlx, hook->thing->ply && !hook->anime->is_player_mv);
+			hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->fram % 4], &x, &y);
+		}
 		draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
 		hook->fram++;
 		hook->sleeper = 0;

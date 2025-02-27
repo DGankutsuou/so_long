@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/27 09:10:25 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:20:25 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <X11/X.h>
+
+# define U 119
+# define R 100
+# define L 97
+# define D 115
 
 typedef struct s_map
 {
@@ -45,7 +50,17 @@ typedef struct s_things
 
 typedef struct s_anime
 {
+	int		is_player_mv;
+	int		is_clct_mv;
+	int		is_zombie_mv;
+	char	player_mv;
+	char	clct_mv;
+	char	zombie_mv;
 	char	*mainp[4];
+	char	*player_f[5];
+	char	*player_b[5];
+	char	*player_l[5];
+	char	*player_r[5];
 	char	*clc[2];
 }	t_anime;
 
@@ -65,6 +80,7 @@ void	elements_validator(t_map *map_inf);
 void	map_validator(char *map, t_map *map_in);
 void	error(char *msg, int stat);
 void	free_map(char **map);
+void	init_things(t_things *thing, void *mlx);
 void	game_starter(t_map *minf, t_things *thing);
 void	up(t_hook *hook);
 void	right(t_hook *hook);
