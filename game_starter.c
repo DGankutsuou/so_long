@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/27 16:40:25 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:28:04 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,6 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.anime = &anime;
 	hook.frame = 0;
 	hook.sleeper = 0;
-
-	anime.mainp[0] = "textures/front_char1.xpm";
-	anime.mainp[1] = "textures/front_char2.xpm";
-	anime.mainp[2] = "textures/front_char3.xpm";
-	anime.mainp[3] = "textures/front_char4.xpm";
-	anime.clc[0] = "textures/collect1.xpm";
-	anime.clc[1] = "textures/collect2.xpm";
-	anime.is_player_mv = 0;
-	anime.is_clct_mv = 0;
 	anime.is_zombie_mv = 0;
 	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop_hook(mlx, animation, &hook);

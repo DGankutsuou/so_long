@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:30:36 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:30:15 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	map_validator(char *map, t_map *map_in);
 void	error(char *msg, int stat);
 void	free_map(char **map);
 void	init_things(t_things *thing, void *mlx);
+void	init_player_frames(t_anime *anime);
+void	init_clct_frames(t_anime *anime);
 void	game_starter(t_map *minf, t_things *thing);
 void	move_player(t_hook *hook);
 void	up(t_hook *hook);
