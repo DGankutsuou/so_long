@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/27 15:36:15 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:40:25 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,44 +53,52 @@ int	key_hook(int key, t_hook *hook)
 	}
 	if (!hook->anime->is_player_mv)
 	{
-		else if (key == U && hook->minf->grid[y - 1][x] != '1')
-			up(hook);
+		hook->anime->is_player_mv = 1;
+		if (key == U && hook->minf->grid[y - 1][x] != '1')
+			hook->anime->player_mv = 'U';
 		else if (key == R && hook->minf->grid[y][x + 1] != '1')
-			right(hook);
+			hook->anime->player_mv = 'R';
 		else if (key == L && hook->minf->grid[y][x - 1] != '1')
-			left(hook);
+			hook->anime->player_mv = 'L';
 		else if (key == D && hook->minf->grid[y + 1][x] != '1')
-			down(hook);
-		draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+			hook->anime->player_mv = 'D';
+		else
+			hook->anime->is_player_mv = 0;
 	}
 	return (0);
 }
 
-int	breath(t_hook *hook)
+int	animation(t_hook *hook)
 {
 	int	x;
 	int	y;
 
-	//while (hook->sleeper < 2000000)
 	hook->sleeper++;
 	if (hook->sleeper == 20000)
 	{
-		if (hook->thing->clct != NULL && !hook->anime->is_clct_mv)
+		if (!hook->anime->is_clct_mv)
 		{
 			mlx_destroy_image(hook->mlx, hook->thing->clct);
-			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->fram % 2], &x, &y);
+			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->frame % 2], &x, &y);
 		}
-		if (hook->thing->ply != NULL)
+		if (!hook->anime->is_player_mv)
 		{
-			mlx_destroy_image(hook->mlx, hook->thing->ply && !hook->anime->is_player_mv);
-			hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->fram % 4], &x, &y);
+			mlx_destroy_image(hook->mlx, hook->thing->ply);
+			hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->frame % 4], &x, &y);
+		}
+		else
+		{
+			hook->anime->is_player_mv = 1;
+			move_player(hook);
 		}
 		draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
-		hook->fram++;
+		hook->frame++;
 		hook->sleeper = 0;
 	}
 	return (0);
 }
+
+
 
 void	game_starter(t_map *minf, t_things *thing)
 {
@@ -109,7 +117,7 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.win = win;
 	hook.counter = 1;
 	hook.anime = &anime;
-	hook.fram = 0;
+	hook.frame = 0;
 	hook.sleeper = 0;
 
 	anime.mainp[0] = "textures/front_char1.xpm";
@@ -118,8 +126,11 @@ void	game_starter(t_map *minf, t_things *thing)
 	anime.mainp[3] = "textures/front_char4.xpm";
 	anime.clc[0] = "textures/collect1.xpm";
 	anime.clc[1] = "textures/collect2.xpm";
-	mlx_loop_hook(mlx, breath, &hook);
+	anime.is_player_mv = 0;
+	anime.is_clct_mv = 0;
+	anime.is_zombie_mv = 0;
 	mlx_key_hook(win, key_hook, &hook);
+	mlx_loop_hook(mlx, animation, &hook);
 	//mlx_hook(win, 3, &hook)
 	mlx_loop(mlx);
 }

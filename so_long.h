@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/27 15:20:25 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:30:36 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_hook
 	void		*mlx;
 	void		*win;
 	int			counter;
-	int			fram;
+	int			frame;
 	int			sleeper;
 }	t_hook;
 
@@ -82,6 +82,7 @@ void	error(char *msg, int stat);
 void	free_map(char **map);
 void	init_things(t_things *thing, void *mlx);
 void	game_starter(t_map *minf, t_things *thing);
+void	move_player(t_hook *hook);
 void	up(t_hook *hook);
 void	right(t_hook *hook);
 void	left(t_hook *hook);

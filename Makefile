@@ -7,7 +7,7 @@ MLX_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm
 SRC = main.c error.c map_validator.c get_next_line.c\
 		get_next_line_utils.c libft/libft.a free_map.c\
 		elements_validator.c game_starter.c distroyer.c\
-		init.c moves.c libft/ft_putnbr_fd.c
+		init.c moves.c libft/ft_putnbr_fd.c animations.c
 
 NAME = so_long
 
