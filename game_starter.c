@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/26 20:46:05 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 08:59:55 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	init_things(t_things *thing, void *mlx)
 	thing->clct = NULL;
 	thing->ply = NULL;
 	thing->exit = NULL;
-	thing->wall = mlx_xpm_file_to_image(mlx, "things/Wall.xpm", &x, &y);
-	thing->ground = mlx_xpm_file_to_image(mlx, "things/background.xpm", &x, &y);
-	thing->clct = mlx_xpm_file_to_image(mlx, "things/collect1.xpm", &x, &y);
-	thing->ply = mlx_xpm_file_to_image(mlx, "things/front_char1.xpm", &x, &y);
-	thing->exit = mlx_xpm_file_to_image(mlx, "things/exit.xpm", &x, &y);
+	thing->wall = mlx_xpm_file_to_image(mlx, "textures/Wall.xpm", &x, &y);
+	thing->ground = mlx_xpm_file_to_image(mlx, "textures/background.xpm", &x, &y);
+	thing->clct = mlx_xpm_file_to_image(mlx, "textures/collect1.xpm", &x, &y);
+	thing->ply = mlx_xpm_file_to_image(mlx, "textures/front_char1.xpm", &x, &y);
+	thing->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &x, &y);
 }
 
 void	draw_things(t_map *minf, t_things *thing, void *mlx, void *win)
@@ -82,16 +82,23 @@ int	key_hook(int key, t_hook *hook)
 
 int	breath(t_hook *hook)
 {
-	int	sleeper;
 	int	x;
 	int	y;
 
-	sleeper = 0;
-	while (sleeper < 1000)
-		sleeper++;
-	hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[1], &x, &y);
-	draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
-	(void)hook;
+	//while (hook->sleeper < 2000000)
+	hook->sleeper++;
+	if (hook->sleeper == 20000)
+	{
+		if (hook->thing->clct != NULL)
+			mlx_destroy_image(hook->mlx, hook->thing->clct);
+		if (hook->thing->ply != NULL)
+			mlx_destroy_image(hook->mlx, hook->thing->ply);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->fram % 4], &x, &y);
+		hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->fram % 2], &x, &y);
+		draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+		hook->fram++;
+		hook->sleeper = 0;
+	}
 	return (0);
 }
 
@@ -112,10 +119,15 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.win = win;
 	hook.counter = 1;
 	hook.anime = &anime;
-	anime.mainp[0] = "front_char1";
-	anime.mainp[1] = "front_char2";
-	anime.mainp[2] = "front_char3";
-	anime.mainp[3] = "front_char4";
+	hook.fram = 0;
+	hook.sleeper = 0;
+
+	anime.mainp[0] = "textures/front_char1.xpm";
+	anime.mainp[1] = "textures/front_char2.xpm";
+	anime.mainp[2] = "textures/front_char3.xpm";
+	anime.mainp[3] = "textures/front_char4.xpm";
+	anime.clc[0] = "textures/collect1.xpm";
+	anime.clc[1] = "textures/collect2.xpm";
 	mlx_loop_hook(mlx, breath, &hook);
 	mlx_key_hook(win, key_hook, &hook);
 	//mlx_hook(win, 3, &hook)

@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 16:51:06 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 08:54:45 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_things
 typedef struct s_anime
 {
 	char	*mainp[4];
+	char	*clc[2];
 }	t_anime;
 
 typedef struct s_hook
@@ -55,6 +56,8 @@ typedef struct s_hook
 	void		*mlx;
 	void		*win;
 	int			counter;
+	int			fram;
+	int			sleeper;
 }	t_hook;
 
 void	elements_validator(t_map *map_inf);
