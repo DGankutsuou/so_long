@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/27 20:28:04 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:32:03 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.frame = 0;
 	hook.sleeper = 0;
 	anime.is_zombie_mv = 0;
+	init_player_frames(&anime);
+	init_clct_frames(&anime);
 	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop_hook(mlx, animation, &hook);
 	//mlx_hook(win, 3, &hook)
