@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/28 13:24:04 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:45:07 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ int	animation(t_hook *hook)
 	hook->sleeper++;
 	if (hook->sleeper == 20000)
 	{
-		if (!hook->anime->is_clct_mv)
+		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
 		{
 			mlx_destroy_image(hook->mlx, hook->thing->clct);
 			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->frame % 2], &x, &y);
 			draw_clct(hook);
+			//printf("hello\n");
 		}
 		if (!hook->anime->is_player_mv)
 		{
