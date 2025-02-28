@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 16:57:34 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:03:24 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	yx_counter(char *map, t_map *map_inf)
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		perror(map);
+		(perror(map), exit(1));
 	map_inf->rows = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -103,7 +103,10 @@ void	map_validator(char *map, t_map *map_inf)
 	yx_counter(map, map_inf);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
+	{
 		perror(map);
+		exit (1);
+	}
 	matrix_maker(fd, map_inf);
 	close(fd);
 	validate_walls(map_inf);

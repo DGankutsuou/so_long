@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 17:10:51 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 17:35:55 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "get_next_line.h"
 # include "libft/libft.h"
-# include "minilibx_linux/mlx.h"
+# include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
