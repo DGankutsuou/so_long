@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 16:13:49 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:18:16 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ void	up(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
-		printf("->->%s\n", hook->anime->player_r[idx]);
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &a, &b);
-		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_b[idx], &a, &b);
+		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64, y * 64 - growth);
 		idx++;
 		growth += 8;
 	}
@@ -77,7 +76,6 @@ void	right(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
-		printf("->->%s\n", hook->anime->player_r[idx]);
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
@@ -126,12 +124,11 @@ void	left(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
-		printf("->->%s\n", hook->anime->player_r[idx]);
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &a, &b);
-		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_l[idx], &a, &b);
+		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 - growth, y * 64);
 		idx++;
-		growth += 4;
+		growth += 8;
 	}
 	else
 	{
@@ -175,10 +172,9 @@ void	down(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
-		printf("->->%s\n", hook->anime->player_r[idx]);
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &a, &b);
-		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_f[idx], &a, &b);
+		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64, y * 64 + growth);
 		idx++;
 		growth += 8;
 	}
@@ -190,9 +186,9 @@ void	down(t_hook *hook)
 		hook->counter++;
 		if (x == hook->minf->e_xy[0] && y == hook->minf->e_xy[1])
 			hook->minf->grid[y][x] = 'E';
-		if (hook->minf->grid[y - 1][x] == 'C')
+		if (hook->minf->grid[y + 1][x] == 'C')
 			hook->minf->collectees--;
-		else if (hook->minf->grid[y - 1][x] == 'E')
+		else if (hook->minf->grid[y + 1][x] == 'E')
 		{
 			if (hook->minf->collectees == 0)
 			{
@@ -201,7 +197,7 @@ void	down(t_hook *hook)
 			}
 		}
 		hook->minf->grid[y - 1][x] = 'P';
-		hook->minf->p_xy[1] -= 1;
+		hook->minf->p_xy[1] += 1;
 		hook->anime->is_player_mv = 0;
 		idx = 0;
 		growth = 0;
