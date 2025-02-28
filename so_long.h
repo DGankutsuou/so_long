@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 10:29:39 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:00:34 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ void	init_things(t_things *thing, void *mlx);
 void	init_player_frames(t_anime *anime);
 void	init_clct_frames(t_anime *anime);
 void	draw_all_things(t_map *minf, t_things *thing, void *mlx, void *win);
+void	draw_clct(t_hook *hook);
+void	draw_player(t_hook *hook);
+void	draw_things(t_hook *hook);
 void	game_starter(t_map *minf, t_things *thing);
 void	move_player(t_hook *hook);
 void	up(t_hook *hook);
