@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/27 20:28:24 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:57:16 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ void	init_player_frames(t_anime *anime)
 	anime->player_r[2] = "textures/character_right_mv3.xpm";
 	anime->player_r[3] = "textures/character_right_mv4.xpm";
 	anime->player_r[4] = "textures/character_right_mv5.xpm";
+	anime->player_l[0] = "textures/character_left_mv1.xpm";
+	anime->player_l[1] = "textures/character_left_mv2.xpm";
+	anime->player_l[2] = "textures/character_left_mv3.xpm";
+	anime->player_l[3] = "textures/character_left_mv4.xpm";
+	anime->player_l[4] = "textures/character_left_mv5.xpm";
+	anime->player_f[0] = "textures/front_char_mv1.xpm";
+	anime->player_f[1] = "textures/front_char_mv2.xpm";
+	anime->player_f[2] = "textures/front_char_mv3.xpm";
+	anime->player_f[3] = "textures/front_char_mv4.xpm";
+	anime->player_f[4] = "textures/front_char_mv5.xpm";
+	anime->player_b[0] = "textures/back_char_mv1.xpm";
+	anime->player_b[1] = "textures/back_char_mv2.xpm";
+	anime->player_b[2] = "textures/back_char_mv3.xpm";
+	anime->player_b[3] = "textures/back_char_mv4.xpm";
+	anime->player_b[4] = "textures/back_char_mv5.xpm";
 }
 
 void	init_clct_frames(t_anime *anime)
