@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/28 20:26:24 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:35:53 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ int	animation(t_hook *hook)
 			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->clct_frame % 2], &x, &y);
 			draw_clct(hook);
 			hook->clct_frame++;
-			printf ("hi\n");
 		}
 		hook->clct_sleeper = 0;
-		draw_things(hook);
+		//draw_things(hook);
 	}
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
 	{
@@ -73,6 +72,7 @@ int	animation(t_hook *hook)
 	}
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
+		printf ("hi\n");
 		draw_things(hook);
 		move_player(hook);
 		hook->player_mv_sleeper = 0;
