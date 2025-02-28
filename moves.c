@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 11:32:51 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:00:08 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ void	right(t_hook *hook)
 	hook->minf->grid[y][x] = '0';
 	if (idx < 5)
 	{
-		printf("->->%s\n", hook->anime->player_r[idx % 5]);
+		printf("->->%s\n", hook->anime->player_r[idx]);
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx % 5], &x, &y);
-		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64, y * 64);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &x, &y);
+		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
+		idx++;
+		growth += 12;
 	}
 	else
 	{
@@ -81,8 +83,6 @@ void	right(t_hook *hook)
 		idx = 0;
 		growth = 0;
 	}
-	idx++;
-	growth += 10;
 }
 
 void	left(t_hook *hook)

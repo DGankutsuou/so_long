@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/28 11:31:04 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:24:04 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	animation(t_hook *hook)
 		}
 		else
 		{
-			hook->anime->is_player_mv = 1;
 			move_player(hook);
 			hook->sleeper = 0;
 			return (0);
