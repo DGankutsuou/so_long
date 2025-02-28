@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 16:18:16 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:47:41 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	up(t_hook *hook)
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_b[idx], &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64, y * 64 - growth);
 		idx++;
-		growth += 8;
+		growth += SPEED;
 	}
 	else
 	{
@@ -80,7 +80,7 @@ void	right(t_hook *hook)
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
 		idx++;
-		growth += 8;
+		growth += SPEED;
 	}
 	else
 	{
@@ -128,7 +128,7 @@ void	left(t_hook *hook)
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_l[idx], &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 - growth, y * 64);
 		idx++;
-		growth += 8;
+		growth += SPEED;
 	}
 	else
 	{
@@ -176,7 +176,7 @@ void	down(t_hook *hook)
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_f[idx], &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64, y * 64 + growth);
 		idx++;
-		growth += 8;
+		growth += SPEED;
 	}
 	else
 	{
@@ -196,7 +196,7 @@ void	down(t_hook *hook)
 				exit(0);
 			}
 		}
-		hook->minf->grid[y - 1][x] = 'P';
+		hook->minf->grid[y + 1][x] = 'P';
 		hook->minf->p_xy[1] += 1;
 		hook->anime->is_player_mv = 0;
 		idx = 0;

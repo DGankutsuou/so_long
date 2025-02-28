@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/28 15:25:30 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 17:12:46 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,34 +46,36 @@ int	animation(t_hook *hook)
 	int	x;
 	int	y;
 
-	hook->sleeper++;
-	if (hook->sleeper == 20000)
+	hook->clct_sleeper++;
+	hook->player_sleeper++;
+	hook->player_mv_sleeper++;
+	if (hook->clct_sleeper == 20000)
 	{
 		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
 		{
 			mlx_destroy_image(hook->mlx, hook->thing->clct);
-			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->frame % 2], &x, &y);
+			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->clct_frame % 2], &x, &y);
 			draw_clct(hook);
-			//printf("hello\n");
+			hook->clct_frame++;
 		}
-
-		if (!hook->anime->is_player_mv)
-		{
-			mlx_destroy_image(hook->mlx, hook->thing->ply);
-			hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->frame % 4], &x, &y);
-			draw_player(hook);
-		}
-		else
-		{
-			draw_things(hook);
-			move_player(hook);
-			hook->sleeper = 0;
-			return (0);
-		}
-		draw_things(hook);
-		hook->frame++;
-		hook->sleeper = 0;
+		hook->clct_sleeper = 0;
 	}
+	if (!hook->anime->is_player_mv && hook->player_sleeper == 20500)
+	{
+		mlx_destroy_image(hook->mlx, hook->thing->ply);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->player_frame % 4], &x, &y);
+		draw_player(hook);
+		hook->player_frame++;
+		hook->player_sleeper = 0;
+	}
+	else if (hook->anime->is_clct_mv && hook->player_mv_sleeper == 10000)
+	{
+		draw_things(hook);
+		move_player(hook);
+		hook->player_mv_sleeper = 0;
+	}
+	if (!hook->anime->is_player_mv)
+		draw_things(hook);
 	return (0);
 }
 
@@ -94,8 +96,11 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.win = win;
 	hook.counter = 1;
 	hook.anime = &anime;
-	hook.frame = 0;
-	hook.sleeper = 0;
+	hook.clct_frame = 0;
+	hook.clct_sleeper = 0;
+	hook.player_frame = 0;
+	hook.player_sleeper = 0;
+	hook.player_mv_sleeper = 0;
 	anime.is_zombie_mv = 0;
 	init_player_frames(&anime);
 	init_clct_frames(&anime);

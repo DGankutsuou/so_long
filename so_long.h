@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 11:00:34 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 17:10:51 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define R 100
 # define L 97
 # define D 115
+
+# define SPEED 4
 
 typedef struct s_map
 {
@@ -72,8 +74,11 @@ typedef struct s_hook
 	void		*mlx;
 	void		*win;
 	int			counter;
-	int			frame;
-	int			sleeper;
+	int			clct_frame;
+	int			player_frame;
+	int			clct_sleeper;
+	int			player_sleeper;
+	int			player_mv_sleeper;
 }	t_hook;
 
 void	elements_validator(t_map *map_inf);
