@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/28 17:49:09 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:26:24 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	animation(t_hook *hook)
 			printf ("hi\n");
 		}
 		hook->clct_sleeper = 0;
+		draw_things(hook);
 	}
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
 	{
@@ -68,6 +69,7 @@ int	animation(t_hook *hook)
 		draw_player(hook);
 		hook->player_frame++;
 		hook->player_sleeper = 0;
+		draw_things(hook);
 	}
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
@@ -75,8 +77,6 @@ int	animation(t_hook *hook)
 		move_player(hook);
 		hook->player_mv_sleeper = 0;
 	}
-	if (!hook->anime->is_player_mv)
-		draw_things(hook);
 	return (0);
 }
 
