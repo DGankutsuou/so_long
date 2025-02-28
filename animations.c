@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:09:45 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:41:54 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:25:31 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	move_player(t_hook *hook)
 		left(hook);
 	else if (hook->anime->player_mv == 'D')
 		down(hook);
-	hook->anime->is_player_mv = 0;
 }

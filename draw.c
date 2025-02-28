@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 20:45:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/27 21:00:12 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:27:10 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,22 @@ void	draw_all_things(t_map *minf, t_things *thing, void *mlx, void *win)
 	}
 }
 
-void	draw_player(t_map *minf, t_things *thing, void *mlx, void *win)
-{
-	int	x;
-	int	y;
+// void	draw_player(t_map *minf, t_things *thing, void *mlx, void *win)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = hook->minf->p_xy[0];
-	y = hook->minf->p_xy[1];
-	mlx_put_image_to_window(mlx, win, thing->ply, x * 64, y * 64);
-}
+// 	x = hook->minf->p_xy[0];
+// 	y = hook->minf->p_xy[1];
+// 	mlx_put_image_to_window(mlx, win, thing->ply, x * 64, y * 64);
+// }
 
-void	draw_clct(t_map *minf, t_things *thing, void *mlx, void *win)
-{
-	int	x;
-	int	y;
+// void	draw_clct(t_map *minf, t_things *thing, void *mlx, void *win)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = hook->minf->p_xy[0];
-	y = hook->minf->p_xy[1];
-	mlx_put_image_to_window(mlx, win, thing->ply, x * 64, y * 64);
-}
+// 	x = hook->minf->p_xy[0];
+// 	y = hook->minf->p_xy[1];
+// 	mlx_put_image_to_window(mlx, win, thing->ply, x * 64, y * 64);
+// }

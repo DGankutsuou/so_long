@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/27 20:45:57 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:28:48 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	animation(t_hook *hook)
 		{
 			hook->anime->is_player_mv = 1;
 			move_player(hook);
+			hook->sleeper = 0;
+			return (0);
 		}
-		draw_things(hook->minf, hook->thing, hook->mlx, hook->win);
+		draw_all_things(hook->minf, hook->thing, hook->mlx, hook->win);
 		hook->frame++;
 		hook->sleeper = 0;
 	}
@@ -83,7 +85,7 @@ void	game_starter(t_map *minf, t_things *thing)
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
 	init_things(thing, mlx);
-	draw_things(minf, thing, mlx, win);
+	draw_all_things(minf, thing, mlx, win);
 	hook.minf = minf;
 	hook.thing = thing;
 	hook.mlx = mlx;
