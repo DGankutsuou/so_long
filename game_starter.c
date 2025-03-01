@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/02/28 20:35:53 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 08:54:58 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	key_hook(int key, t_hook *hook)
 	if (!hook->anime->is_player_mv)
 	{
 		hook->anime->is_player_mv = 1;
+		hook->player_mv_sleeper = 0;
 		if (key == U && hook->minf->grid[y - 1][x] != '1')
 			hook->anime->player_mv = 'U';
 		else if (key == R && hook->minf->grid[y][x + 1] != '1')
@@ -49,9 +50,9 @@ int	animation(t_hook *hook)
 	hook->clct_sleeper++;
 	hook->player_sleeper++;
 	hook->player_mv_sleeper++;
-	if (hook->clct_sleeper == 20000)
+	if (hook->clct_sleeper == 15000)
 	{
-		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
+		if (!hook->anime->is_player_mv && !hook->anime->is_clct_mv && hook->minf->collectees > 0)
 		{
 			mlx_destroy_image(hook->mlx, hook->thing->clct);
 			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->clct_frame % 2], &x, &y);
@@ -59,7 +60,6 @@ int	animation(t_hook *hook)
 			hook->clct_frame++;
 		}
 		hook->clct_sleeper = 0;
-		//draw_things(hook);
 	}
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
 	{
@@ -72,10 +72,17 @@ int	animation(t_hook *hook)
 	}
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
-		printf ("hi\n");
+		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
+		{
+			mlx_destroy_image(hook->mlx, hook->thing->clct);
+			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->clct_frame % 2], &x, &y);
+			draw_clct(hook);
+			hook->clct_frame++;
+		}
 		draw_things(hook);
 		move_player(hook);
 		hook->player_mv_sleeper = 0;
+		hook->player_sleeper = 0;
 	}
 	return (0);
 }

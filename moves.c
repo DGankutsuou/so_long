@@ -6,11 +6,16 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 16:47:41 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 09:10:43 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	arive()
+{
+
+}
 
 void	up(t_hook *hook)
 {
