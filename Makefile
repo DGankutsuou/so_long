@@ -5,16 +5,16 @@ CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 
 SRC = main.c error.c map_validator.c get_next_line.c\
-		get_next_line_utils.c libft/libft.a free_map.c\
+		get_next_line_utils.c free_map.c\
 		elements_validator.c game_starter.c distroyer.c\
-		init.c moves.c libft/ft_putnbr_fd.c animations.c\
+		init.c moves.c animations.c\
 		draw.c arives.c enemy_puter.c
 
 NAME = so_long
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+$(NAME): $(SRC) libft/libft.a
 	$(CC) $(CFLAGS) $^ $(MLX_FLAGS) -o $@
 
 libft/libft.a:

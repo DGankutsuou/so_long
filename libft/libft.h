@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:35:25 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 09:04:19 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:22:46 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	sherror(char *str, int stat);
 void	error(char *msg, int stat);
 int		ft_strchar_cmp(char *str, char c);
 void	ft_putnbr_fd(int n, int fd);
+char	*ft_itoa(int n);
 
 #endif
