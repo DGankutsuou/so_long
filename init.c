@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 12:12:56 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:33:49 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	init_things(t_things *thing, void *mlx)
 	thing->clct = NULL;
 	thing->ply = NULL;
 	thing->exit = NULL;
+	thing->fire = NULL;
 	thing->wall = mlx_xpm_file_to_image(mlx, "textures/Wall.xpm", &x, &y);
 	thing->grd = mlx_xpm_file_to_image(mlx, "textures/background.xpm", &x, &y);
 	thing->clct = mlx_xpm_file_to_image(mlx, "textures/collect1.xpm", &x, &y);
 	thing->ply = mlx_xpm_file_to_image(mlx, "textures/front_char1.xpm", &x, &y);
 	thing->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &x, &y);
+	thing->fire = mlx_xpm_file_to_image(mlx, "textures/fire1.xpm", &x, &y);
 }
 
 void	init_player_frames(t_anime *anime)
@@ -66,6 +68,7 @@ void	init_hook(t_hook *hook)
 	hook->player_frame = 0;
 	hook->player_sleeper = 0;
 	hook->player_mv_sleeper = 0;
+	hook->fire_sleeper = 0;
 	hook->anime->is_zombie_mv = 0;
 }
 
@@ -74,4 +77,9 @@ void	init_clct_frames(t_anime *anime)
 	anime->clc[0] = "textures/collect1.xpm";
 	anime->clc[1] = "textures/collect2.xpm";
 	anime->is_clct_mv = 0;
+}
+
+void	init_enemy()
+{
+
 }

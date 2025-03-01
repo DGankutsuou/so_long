@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 14:36:58 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:52:40 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_map
 	int		e_xy[2];
 	int		collectees;
 	int		player_counter;
+	int		fire_counter;
 	int		exit_counter;
 }	t_map;
 
@@ -48,6 +49,7 @@ typedef struct s_things
 	void	*clct;
 	void	*ply;
 	void	*exit;
+	void	*fire;
 }	t_things;
 
 typedef struct s_anime
@@ -64,6 +66,7 @@ typedef struct s_anime
 	char	*player_l[5];
 	char	*player_r[5];
 	char	*clc[2];
+	char	*firef[4];
 }	t_anime;
 
 typedef struct s_hook
@@ -76,9 +79,11 @@ typedef struct s_hook
 	int			counter;
 	int			clct_frame;
 	int			player_frame;
+	int			fire_frame;
 	int			clct_sleeper;
 	int			player_sleeper;
 	int			player_mv_sleeper;
+	int			fire_sleeper;
 }	t_hook;
 
 void	elements_validator(t_map *map_inf);
@@ -94,6 +99,7 @@ void	draw_all_things(t_map *minf, t_things *thing, void *mlx, void *win);
 void	draw_clct(t_hook *hook);
 void	draw_player(t_hook *hook);
 void	draw_things(t_hook *hook);
+void	draw_fire(t_hook *hook);
 void	game_starter(t_map *minf, t_things *thing);
 void	move_player(t_hook *hook);
 void	clct_scared(t_hook *hook);

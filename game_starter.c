@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/01 12:11:26 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:34:25 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	key_hook(int key, t_hook *hook)
 int	animation(t_hook *hook)
 {
 	hook->clct_sleeper++;
+	hook->fire_sleeper++;
 	hook->player_sleeper++;
 	hook->player_mv_sleeper++;
 	if (hook->clct_sleeper == 15000)

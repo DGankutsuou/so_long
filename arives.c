@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 10:38:17 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 10:46:16 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:32:00 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	arive_r(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(distroyer(hook), exit(0));
 	}
+	else if (hook->minf->grid[y][x + 1] == 'B')
+		(distroyer(hook), exit(0));
 	hook->minf->grid[y][x + 1] = 'P';
 	hook->minf->p_xy[0] += 1;
 	hook->anime->is_player_mv = 0;
@@ -59,6 +61,8 @@ void	arive_l(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(distroyer(hook), exit(0));
 	}
+	else if (hook->minf->grid[y][x - 1] == 'B')
+		(distroyer(hook), exit(0));
 	hook->minf->grid[y][x - 1] = 'P';
 	hook->minf->p_xy[0] -= 1;
 	hook->anime->is_player_mv = 0;
@@ -86,6 +90,8 @@ void	arive_u(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(distroyer(hook), exit(0));
 	}
+	else if (hook->minf->grid[y - 1][x] == 'B')
+		(distroyer(hook), exit(0));
 	hook->minf->grid[y - 1][x] = 'P';
 	hook->minf->p_xy[1] -= 1;
 	hook->anime->is_player_mv = 0;
@@ -113,6 +119,8 @@ void	arive_d(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(distroyer(hook), exit(0));
 	}
+	else if (hook->minf->grid[y + 1][x] == 'B')
+		(distroyer(hook), exit(0));
 	hook->minf->grid[y + 1][x] = 'P';
 	hook->minf->p_xy[1] += 1;
 	hook->anime->is_player_mv = 0;
