@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/01 15:34:25 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:04:17 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	animation(t_hook *hook)
 	hook->player_mv_sleeper++;
 	if (hook->clct_sleeper == 15000)
 		clct_scared(hook);
+	if (hook->fire_sleeper == 15000)
+		fire_animation(hook);
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
 		player_breath(hook);
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
@@ -74,6 +76,7 @@ void	game_starter(t_map *minf, t_things *thing)
 	draw_all_things(minf, thing, mlx, win);
 	init_player_frames(&anime);
 	init_clct_frames(&anime);
+	init_enemy(&anime);
 	hook.minf = minf;
 	hook.thing = thing;
 	hook.mlx = mlx;

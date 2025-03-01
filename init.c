@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 15:33:49 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:03:51 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_hook(t_hook *hook)
 {
 	hook->counter = 1;
 	hook->clct_frame = 0;
+	hook->fire_frame = 0;
 	hook->clct_sleeper = 0;
 	hook->player_frame = 0;
 	hook->player_sleeper = 0;
@@ -79,7 +80,10 @@ void	init_clct_frames(t_anime *anime)
 	anime->is_clct_mv = 0;
 }
 
-void	init_enemy()
+void	init_enemy(t_anime *anime)
 {
-
+	anime->firef[0] = "textures/fire1.xpm";
+	anime->firef[1] = "textures/fire2.xpm";
+	anime->firef[2] = "textures/fire3.xpm";
+	anime->firef[3] = "textures/fire4.xpm";
 }

@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:09:45 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 15:52:19 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:56:08 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	fire_animation(t_hook *hook)
 	char	*img;
 
 	img = hook->anime->firef[hook->fire_frame % 4];
-	if ()
+	if (hook->minf->fire_counter > 0)
 	{
-		mlx_destroy_image(hook->mlx, hook->thing->clct);
-		hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, img, &x, &y);
+		mlx_destroy_image(hook->mlx, hook->thing->fire);
+		hook->thing->fire = mlx_xpm_file_to_image(hook->mlx, img, &x, &y);
 		draw_fire(hook);
-		hook->clct_frame++;
+		hook->fire_frame++;
 	}
-	hook->clct_sleeper = 0;
+	hook->fire_sleeper = 0;
 }
