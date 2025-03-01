@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 15:57:16 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:12:56 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	init_things(t_things *thing, void *mlx)
 	int	y;
 
 	thing->wall = NULL;
-	thing->ground = NULL;
+	thing->grd = NULL;
 	thing->clct = NULL;
 	thing->ply = NULL;
 	thing->exit = NULL;
 	thing->wall = mlx_xpm_file_to_image(mlx, "textures/Wall.xpm", &x, &y);
-	thing->ground = mlx_xpm_file_to_image(mlx, "textures/background.xpm", &x, &y);
+	thing->grd = mlx_xpm_file_to_image(mlx, "textures/background.xpm", &x, &y);
 	thing->clct = mlx_xpm_file_to_image(mlx, "textures/collect1.xpm", &x, &y);
 	thing->ply = mlx_xpm_file_to_image(mlx, "textures/front_char1.xpm", &x, &y);
 	thing->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &x, &y);
@@ -56,6 +56,17 @@ void	init_player_frames(t_anime *anime)
 	anime->player_b[2] = "textures/back_char_mv3.xpm";
 	anime->player_b[3] = "textures/back_char_mv4.xpm";
 	anime->player_b[4] = "textures/back_char_mv5.xpm";
+}
+
+void	init_hook(t_hook *hook)
+{
+	hook->counter = 1;
+	hook->clct_frame = 0;
+	hook->clct_sleeper = 0;
+	hook->player_frame = 0;
+	hook->player_sleeper = 0;
+	hook->player_mv_sleeper = 0;
+	hook->anime->is_zombie_mv = 0;
 }
 
 void	init_clct_frames(t_anime *anime)

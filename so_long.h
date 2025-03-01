@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/28 19:16:56 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:12:56 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_map
 typedef struct s_things
 {
 	void	*wall;
-	void	*ground;
+	void	*grd;
 	void	*clct;
 	void	*ply;
 	void	*exit;
@@ -88,16 +88,23 @@ void	free_map(char **map);
 void	init_things(t_things *thing, void *mlx);
 void	init_player_frames(t_anime *anime);
 void	init_clct_frames(t_anime *anime);
+void	init_hook(t_hook *hook);
 void	draw_all_things(t_map *minf, t_things *thing, void *mlx, void *win);
 void	draw_clct(t_hook *hook);
 void	draw_player(t_hook *hook);
 void	draw_things(t_hook *hook);
 void	game_starter(t_map *minf, t_things *thing);
 void	move_player(t_hook *hook);
+void	clct_scared(t_hook *hook);
+void	player_breath(t_hook *hook);
 void	up(t_hook *hook);
 void	right(t_hook *hook);
 void	left(t_hook *hook);
 void	down(t_hook *hook);
+void	arive_l(t_hook *hook, int *idx, int *growth);
+void	arive_r(t_hook *hook, int *idx, int *growth);
+void	arive_u(t_hook *hook, int *idx, int *growth);
+void	arive_d(t_hook *hook, int *idx, int *growth);
 void	distroyer(t_hook *hook);
 
 #endif

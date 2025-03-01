@@ -6,16 +6,11 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 09:10:43 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:29:31 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	arive()
-{
-
-}
 
 void	up(t_hook *hook)
 {
@@ -23,6 +18,7 @@ void	up(t_hook *hook)
 	int			y;
 	int			a;
 	int			b;
+	char		*pf;
 	static int	idx = 0;
 	static int	growth = 0;
 
@@ -33,36 +29,15 @@ void	up(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
+		pf = hook->anime->player_b[idx];
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_b[idx], &a, &b);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, pf, &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64, y * 64 - growth);
 		idx++;
 		growth += SPEED;
 	}
 	else
-	{
-		ft_putstr_fd("-> ", 1);
-		ft_putnbr_fd(hook->counter, 1);
-		ft_putendl_fd("", 1);
-		hook->counter++;
-		if (x == hook->minf->e_xy[0] && y == hook->minf->e_xy[1])
-			hook->minf->grid[y][x] = 'E';
-		if (hook->minf->grid[y - 1][x] == 'C')
-			hook->minf->collectees--;
-		else if (hook->minf->grid[y - 1][x] == 'E')
-		{
-			if (hook->minf->collectees == 0)
-			{
-				distroyer(hook);
-				exit(0);
-			}
-		}
-		hook->minf->grid[y - 1][x] = 'P';
-		hook->minf->p_xy[1] -= 1;
-		hook->anime->is_player_mv = 0;
-		idx = 0;
-		growth = 0;
-	}
+		arive_u(hook, &idx, &growth);
 }
 
 void	right(t_hook *hook)
@@ -88,29 +63,7 @@ void	right(t_hook *hook)
 		growth += SPEED;
 	}
 	else
-	{
-		ft_putstr_fd("-> ", 1);
-		ft_putnbr_fd(hook->counter, 1);
-		ft_putendl_fd("", 1);
-		hook->counter++;
-		if (x == hook->minf->e_xy[0] && y == hook->minf->e_xy[1])
-			hook->minf->grid[y][x] = 'E';
-		if (hook->minf->grid[y][x + 1] == 'C')
-			hook->minf->collectees--;
-		else if (hook->minf->grid[y][x + 1] == 'E')
-		{
-			if (hook->minf->collectees == 0)
-			{
-				distroyer(hook);
-				exit(0);
-			}
-		}
-		hook->minf->grid[y][x + 1] = 'P';
-		hook->minf->p_xy[0] += 1;
-		hook->anime->is_player_mv = 0;
-		idx = 0;
-		growth = 0;
-	}
+		arive_r(hook, &idx, &growth);
 }
 
 void	left(t_hook *hook)
@@ -136,29 +89,7 @@ void	left(t_hook *hook)
 		growth += SPEED;
 	}
 	else
-	{
-		ft_putstr_fd("-> ", 1);
-		ft_putnbr_fd(hook->counter, 1);
-		ft_putendl_fd("", 1);
-		hook->counter++;
-		if (x == hook->minf->e_xy[0] && y == hook->minf->e_xy[1])
-			hook->minf->grid[y][x] = 'E';
-		if (hook->minf->grid[y][x - 1] == 'C')
-			hook->minf->collectees--;
-		else if (hook->minf->grid[y][x - 1] == 'E')
-		{
-			if (hook->minf->collectees == 0)
-			{
-				distroyer(hook);
-				exit(0);
-			}
-		}
-		hook->minf->grid[y][x - 1] = 'P';
-		hook->minf->p_xy[0] -= 1;
-		hook->anime->is_player_mv = 0;
-		idx = 0;
-		growth = 0;
-	}
+		arive_l(hook, &idx, &growth);
 }
 
 void	down(t_hook *hook)
@@ -184,27 +115,5 @@ void	down(t_hook *hook)
 		growth += SPEED;
 	}
 	else
-	{
-		ft_putstr_fd("-> ", 1);
-		ft_putnbr_fd(hook->counter, 1);
-		ft_putendl_fd("", 1);
-		hook->counter++;
-		if (x == hook->minf->e_xy[0] && y == hook->minf->e_xy[1])
-			hook->minf->grid[y][x] = 'E';
-		if (hook->minf->grid[y + 1][x] == 'C')
-			hook->minf->collectees--;
-		else if (hook->minf->grid[y + 1][x] == 'E')
-		{
-			if (hook->minf->collectees == 0)
-			{
-				distroyer(hook);
-				exit(0);
-			}
-		}
-		hook->minf->grid[y + 1][x] = 'P';
-		hook->minf->p_xy[1] += 1;
-		hook->anime->is_player_mv = 0;
-		idx = 0;
-		growth = 0;
-	}
+		arive_d(hook, &idx, &growth);
 }

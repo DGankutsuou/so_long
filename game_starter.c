@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/01 08:54:58 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:11:26 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	key_hook(int key, t_hook *hook)
 	x = hook->minf->p_xy[0];
 	y = hook->minf->p_xy[1];
 	if (key == 65307)
-	{
-		distroyer(hook);
-		exit(0);
-	}
+		(distroyer(hook), exit(0));
 	if (!hook->anime->is_player_mv)
 	{
 		hook->anime->is_player_mv = 1;
@@ -44,41 +41,17 @@ int	key_hook(int key, t_hook *hook)
 
 int	animation(t_hook *hook)
 {
-	int	x;
-	int	y;
-
 	hook->clct_sleeper++;
 	hook->player_sleeper++;
 	hook->player_mv_sleeper++;
 	if (hook->clct_sleeper == 15000)
-	{
-		if (!hook->anime->is_player_mv && !hook->anime->is_clct_mv && hook->minf->collectees > 0)
-		{
-			mlx_destroy_image(hook->mlx, hook->thing->clct);
-			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->clct_frame % 2], &x, &y);
-			draw_clct(hook);
-			hook->clct_frame++;
-		}
-		hook->clct_sleeper = 0;
-	}
+		clct_scared(hook);
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
-	{
-		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->mainp[hook->player_frame % 4], &x, &y);
-		draw_player(hook);
-		hook->player_frame++;
-		hook->player_sleeper = 0;
-		draw_things(hook);
-	}
+		player_breath(hook);
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
 		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
-		{
-			mlx_destroy_image(hook->mlx, hook->thing->clct);
-			hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, hook->anime->clc[hook->clct_frame % 2], &x, &y);
-			draw_clct(hook);
-			hook->clct_frame++;
-		}
+			clct_scared(hook);
 		draw_things(hook);
 		move_player(hook);
 		hook->player_mv_sleeper = 0;
@@ -98,20 +71,14 @@ void	game_starter(t_map *minf, t_things *thing)
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
 	init_things(thing, mlx);
 	draw_all_things(minf, thing, mlx, win);
+	init_player_frames(&anime);
+	init_clct_frames(&anime);
 	hook.minf = minf;
 	hook.thing = thing;
 	hook.mlx = mlx;
 	hook.win = win;
-	hook.counter = 1;
 	hook.anime = &anime;
-	hook.clct_frame = 0;
-	hook.clct_sleeper = 0;
-	hook.player_frame = 0;
-	hook.player_sleeper = 0;
-	hook.player_mv_sleeper = 0;
-	anime.is_zombie_mv = 0;
-	init_player_frames(&anime);
-	init_clct_frames(&anime);
+	init_hook(&hook);
 	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop_hook(mlx, animation, &hook);
 	//mlx_hook(win, 3, &hook)

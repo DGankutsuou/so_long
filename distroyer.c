@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 08:17:54 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/02/26 08:41:10 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:12:56 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	distroyer(t_hook *hook)
 	free_map(hook->minf->grid);
 	if (hook->thing->wall != NULL)
 		mlx_destroy_image(hook->mlx, hook->thing->wall);
-	if (hook->thing->ground != NULL)
-		mlx_destroy_image(hook->mlx, hook->thing->ground);
+	if (hook->thing->grd != NULL)
+		mlx_destroy_image(hook->mlx, hook->thing->grd);
 	if (hook->thing->clct != NULL)
 		mlx_destroy_image(hook->mlx, hook->thing->clct);
 	if (hook->thing->ply != NULL)
