@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 17:49:09 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:47:00 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,15 @@ typedef struct s_hook
 	int			player_mv_sleeper;
 	int			fire_sleeper;
 }	t_hook;
+
+typedef struct s_move
+{
+	int			x;
+	int			y;
+	int			a;
+	int			b;
+	char		*pf;
+}	t_move;
 
 void	elements_validator(t_map *map_inf);
 void	map_validator(char *map, t_map *map_in);
