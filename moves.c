@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 12:29:31 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:51:21 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	right(t_hook *hook)
 	int			y;
 	int			a;
 	int			b;
+	void		*pf;
 	static int	idx = 0;
 	static int	growth = 0;
 
@@ -56,8 +57,9 @@ void	right(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
+		pf = hook->anime->player_r[idx];
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
-		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, hook->anime->player_r[idx], &a, &b);
+		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, pf, &a, &b);
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, x * 64 + growth, y * 64);
 		idx++;
 		growth += SPEED;

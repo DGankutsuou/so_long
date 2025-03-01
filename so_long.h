@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 12:12:56 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:36:58 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_hook
 
 void	elements_validator(t_map *map_inf);
 void	map_validator(char *map, t_map *map_in);
+void	enemy_puter(t_map *minf);
 void	error(char *msg, int stat);
 void	free_map(char **map);
 void	init_things(t_things *thing, void *mlx);
