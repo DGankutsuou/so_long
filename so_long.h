@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 18:47:00 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:59:01 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,34 @@
 
 # include "get_next_line.h"
 # include "libft/libft.h"
-# include <mlx.h>
+//# include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include <X11/X.h>
+//# include <X11/X.h>
 
 # define U 119
 # define R 100
 # define L 97
 # define D 115
 
-# define SPEED 4
+# define STEPS 4
+
+typedef struct s_zombie
+{
+	int		x;
+	int		y;
+	int		is_mv;
+	char	mv;
+}	t_zombie;
+
+typedef struct s_clct
+{
+	int		x;
+	int		y;
+	int		is_mv;
+	char	mv;
+}	t_clct;
 
 typedef struct s_map
 {
@@ -39,6 +55,7 @@ typedef struct s_map
 	int		collectees;
 	int		player_counter;
 	int		fire_counter;
+	int		zombies;
 	int		exit_counter;
 }	t_map;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 18:47:44 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/03 06:35:23 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	up(t_hook *hook)
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64, mv.y * 64 - growth);
 		idx++;
-		growth += SPEED;
+		growth += STEPS;
 	}
 	else
 		arive_u(hook, &idx, &growth);
@@ -58,7 +58,7 @@ void	right(t_hook *hook)
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64 + growth, mv.y * 64);
 		idx++;
-		growth += SPEED;
+		growth += STEPS;
 	}
 	else
 		arive_r(hook, &idx, &growth);
@@ -84,7 +84,7 @@ void	left(t_hook *hook)
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64 - growth, mv.y * 64);
 		idx++;
-		growth += SPEED;
+		growth += STEPS;
 	}
 	else
 		arive_l(hook, &idx, &growth);
@@ -110,7 +110,7 @@ void	down(t_hook *hook)
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64, mv.y * 64 + growth);
 		idx++;
-		growth += SPEED;
+		growth += STEPS;
 	}
 	else
 		arive_d(hook, &idx, &growth);
