@@ -6,7 +6,7 @@
 /*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/03 06:35:23 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:15:51 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	left(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
-		mv.pf = hook->anime->player_r[idx];
+		mv.pf = hook->anime->player_l[idx];
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, mv.pf, \
 		&mv.a, &mv.b);
@@ -103,7 +103,7 @@ void	down(t_hook *hook)
 	{
 		if (idx == 5)
 			idx = 0;
-		mv.pf = hook->anime->player_r[idx];
+		mv.pf = hook->anime->player_f[idx];
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, mv.pf, \
 		&mv.a, &mv.b);
