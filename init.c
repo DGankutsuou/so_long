@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 16:03:51 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/04 14:10:39 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	init_hook(t_hook *hook)
 	hook->player_mv_sleeper = 0;
 	hook->fire_sleeper = 0;
 	hook->anime->is_zombie_mv = 0;
+	hook->timer = 0;
 }
 
 void	init_clct_frames(t_anime *anime)

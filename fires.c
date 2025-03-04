@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collectables.c                                     :+:      :+:    :+:   */
+/*   fires.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 06:31:58 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/03 16:45:34 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/04 12:39:10 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-
-static void	store(t_map *map_inf, t_clct *clct, t_zombie *zombie)
+static void	count(t_map *map_inf)
 {
 	int	y;
 	int	x;
-	int	cidx;
-	int	zidx;
 
 	y = 1;
-	cidx = 0;
-	zidx = 0;
-	map_inf->collectees = 0;
-	map_inf->zombies = 0;
+	map_inf->fire_counter = 0;
+	while (y < map_inf->rows - 1)
+	{
+		x = 1;
+		while (x < map_inf->coloms - 1)
+		{
+			if (map_inf->grid[y][x] == 'B')
+				map_inf->fire_counter++;
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	store(t_map *map_inf, t_fire *fire)
+{
+	int	y;
+	int	x;
+	int	fidx;
+
+	y = 1;
+	fidx = 0;
 	while (y < map_inf->rows - 1)
 	{
 		x = 1;
@@ -33,16 +47,9 @@ static void	store(t_map *map_inf, t_clct *clct, t_zombie *zombie)
 		{
 			if (map_inf->grid[y][x] == 'C')
 			{
-				clct[cidx].x = x;
-				clct[cidx].y = y;
-				clct[cidx++].is_mv = 0;
-			}
-			if (map_inf->grid[y][x] == 'Z')
-			{
-				zombie[zidx].x = x;
-				zombie[zidx].y = y;
-				zombie[zidx++].is_mv = 0;
-				map_inf->zombies++;
+				fire[fidx].x = x;
+				fire[fidx].y = y;
+				fire[fidx++].is_mv = 0;
 			}
 			x++;
 		}
@@ -50,12 +57,12 @@ static void	store(t_map *map_inf, t_clct *clct, t_zombie *zombie)
 	}
 }
 
-void	store_clcts(t_map *minf, t_clct **clcts)
+int	store_fire(t_map *minf, t_fire **fire)
 {
-	*clcts = malloc(minf->collectees * sizeof(t_clct));
-	if (!*clcts)
-	{
-		free(minf->grid);
-		exit(0);
-	}
+	count(minf);
+	if (minf->fire_counter > 0)
+		*fire = malloc(minf->fire_counter * sizeof(t_fire));
+	if (!*fire)
+		return (1);
+	store(minf, *fire);
 }

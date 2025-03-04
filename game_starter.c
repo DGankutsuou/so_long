@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_starter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/01 18:28:11 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/04 14:41:30 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ int	animation(t_hook *hook)
 	if (hook->fire_sleeper == 15000)
 		fire_animation(hook);
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
+	{
 		player_breath(hook);
+		hook->timer++;
+	}
+	if (hook->timer == 6)
+		fire_everything(hook->minf);
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
 		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
@@ -59,6 +64,7 @@ int	animation(t_hook *hook)
 		move_player(hook);
 		hook->player_mv_sleeper = 0;
 		hook->player_sleeper = 0;
+		hook->timer = 0;
 	}
 	return (0);
 }

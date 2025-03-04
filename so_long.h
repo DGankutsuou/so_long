@@ -6,7 +6,7 @@
 /*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/03 10:59:01 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:39:57 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,13 @@
 
 # define STEPS 4
 
-typedef struct s_zombie
+typedef struct s_fire
 {
 	int		x;
 	int		y;
 	int		is_mv;
 	char	mv;
-}	t_zombie;
-
-typedef struct s_clct
-{
-	int		x;
-	int		y;
-	int		is_mv;
-	char	mv;
-}	t_clct;
+}	t_fire;
 
 typedef struct s_map
 {
@@ -55,7 +47,6 @@ typedef struct s_map
 	int		collectees;
 	int		player_counter;
 	int		fire_counter;
-	int		zombies;
 	int		exit_counter;
 }	t_map;
 
@@ -101,6 +92,7 @@ typedef struct s_hook
 	int			player_sleeper;
 	int			player_mv_sleeper;
 	int			fire_sleeper;
+	int			timer;
 }	t_hook;
 
 typedef struct s_move
@@ -115,6 +107,7 @@ typedef struct s_move
 void	elements_validator(t_map *map_inf);
 void	map_validator(char *map, t_map *map_in);
 void	enemy_puter(t_map *minf);
+void	fire_everything(t_map *minf);
 void	error(char *msg, int stat);
 void	free_map(char **map);
 
