@@ -6,7 +6,7 @@
 /*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/04 14:41:30 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:24:51 by blessed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	animation(t_hook *hook)
 		player_breath(hook);
 		hook->timer++;
 	}
-	if (hook->timer == 6)
+	if (hook->timer == 30)
 		fire_everything(hook->minf);
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
