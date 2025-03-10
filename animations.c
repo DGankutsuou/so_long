@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:09:45 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 19:22:21 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 20:54:15 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	player_breath(t_hook *hook)
 	draw_player(hook);
 	hook->player_frame++;
 	hook->player_sleeper = 0;
+	hook->timer++;
 	draw_things(hook);
 }
 

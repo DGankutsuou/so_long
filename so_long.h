@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 16:46:54 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 20:56:44 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 # define R 100
 # define L 97
 # define D 115
+
+# define AU 65362
+# define AR 65363
+# define AL 65361
+# define AD 65364
 
 # define STEPS 4
 
