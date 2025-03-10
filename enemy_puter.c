@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_puter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:30:46 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/04 12:58:58 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:31:50 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	enemy_puter(t_map *minf)
 			{
 				if (is_valid(minf, x, y))
 				{
-					minf->grid[y][x] = 'B';
+					minf->grid[y][x] = 'F';
 					minf->fire_counter++;
 				}
 			}
@@ -64,7 +64,7 @@ void	fire_everything(t_map *minf)
 		{
 			if (minf->grid[y][x] == '0')
 			{
-				minf->grid[y][x] = 'B';
+				minf->grid[y][x] = 'F';
 				minf->fire_counter++;
 			}
 			x++;

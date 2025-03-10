@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:09:45 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 18:27:53 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:27:26 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	clct_scared(t_hook *hook)
 	char	*img;
 
 	img = hook->anime->clc[hook->clct_frame % 2];
-	if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
+	if (hook->minf->collectees > 0)
 	{
 		mlx_destroy_image(hook->mlx, hook->thing->clct);
 		hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, img, &x, &y);

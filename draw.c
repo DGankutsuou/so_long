@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 20:45:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 16:01:39 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:31:31 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_fire(t_hook *hook)
 		x = 0;
 		while (x < hook->minf->coloms)
 		{
-			if (hook->minf->grid[y][x] == 'B')
+			if (hook->minf->grid[y][x] == 'F')
 				mlx_put_image_to_window(hook->mlx, w, f, x * 64, y * 64);
 			x++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_starter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/06 13:27:30 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:29:48 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int	animation(t_hook *hook)
 	if (hook->clct_sleeper == 15000)
 		clct_scared(hook);
 	if (hook->fire_sleeper == 15000)
+	{
 		fire_animation(hook);
+		printf ("hi\n");
+	}
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
 	{
 		player_breath(hook);
@@ -57,11 +60,13 @@ int	animation(t_hook *hook)
 	if (hook->timer == 30)
 	{
 		fire_everything(hook->minf);
-		draw_fire(hook);
+		//draw_fire(hook);
+		hook->fire_sleeper = 0;
+		fire_animation(hook);
 	}
 	else if (hook->anime->is_player_mv && hook->player_mv_sleeper == 10000)
 	{
-		if (!hook->anime->is_clct_mv && hook->minf->collectees > 0)
+		if (hook->minf->collectees > 0)
 			clct_scared(hook);
 		draw_things(hook);
 		move_player(hook);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/06 13:28:48 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:22:45 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "get_next_line.h"
 # include "libft/libft.h"
-// # include <mlx.h>
+# include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-// # include <X11/X.h>
+# include <X11/X.h>
 
 # define U 119
 # define R 100
@@ -27,14 +27,6 @@
 # define D 115
 
 # define STEPS 4
-
-typedef struct s_fire
-{
-	int		x;
-	int		y;
-	int		is_mv;
-	char	mv;
-}	t_fire;
 
 typedef struct s_map
 {
@@ -63,11 +55,7 @@ typedef struct s_things
 typedef struct s_anime
 {
 	int		is_player_mv;
-	int		is_clct_mv;
-	int		is_zombie_mv;
 	char	player_mv;
-	char	clct_mv;
-	char	zombie_mv;
 	char	*mainp[4];
 	char	*player_f[5];
 	char	*player_b[5];
