@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 10:38:17 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 17:56:37 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:28:28 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	arive_r(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(ft_putendl_fd("Thou art winner", 1), distroyer(hook), exit(0));
 	}
-	else if (hook->minf->grid[y][x + 1] == 'B')
+	else if (hook->minf->grid[y][x + 1] == 'F')
 		(ft_putendl_fd("Thou art looser", 1), distroyer(hook), exit(0));
 	hook->minf->grid[y][x + 1] = 'P';
 	hook->minf->p_xy[0] += 1;
@@ -71,7 +71,7 @@ void	arive_l(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(ft_putendl_fd("Thou art winner", 1), distroyer(hook), exit(0));
 	}
-	else if (hook->minf->grid[y][x - 1] == 'B')
+	else if (hook->minf->grid[y][x - 1] == 'F')
 		(ft_putendl_fd("Thou art looser", 1), distroyer(hook), exit(0));
 	hook->minf->grid[y][x - 1] = 'P';
 	hook->minf->p_xy[0] -= 1;
@@ -97,7 +97,7 @@ void	arive_u(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(ft_putendl_fd("Thou art winner", 1), distroyer(hook), exit(0));
 	}
-	else if (hook->minf->grid[y - 1][x] == 'B')
+	else if (hook->minf->grid[y - 1][x] == 'F')
 		(ft_putendl_fd("Thou art looser", 1), distroyer(hook), exit(0));
 	hook->minf->grid[y - 1][x] = 'P';
 	hook->minf->p_xy[1] -= 1;
@@ -123,7 +123,7 @@ void	arive_d(t_hook *hook, int *idx, int *growth)
 		if (hook->minf->collectees == 0)
 			(ft_putendl_fd("Thou art winner", 1), distroyer(hook), exit(0));
 	}
-	else if (hook->minf->grid[y + 1][x] == 'B')
+	else if (hook->minf->grid[y + 1][x] == 'F')
 		(ft_putendl_fd("Thou art looser", 1), distroyer(hook), exit(0));
 	hook->minf->grid[y + 1][x] = 'P';
 	hook->minf->p_xy[1] += 1;
