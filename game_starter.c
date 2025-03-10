@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/10 18:36:03 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 19:19:35 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int	animation(t_hook *hook)
 	if (hook->fire_sleeper == 15000)
 	{
 		fire_animation(hook);
-		printf ("hi\n");
 	}
 	if (hook->timer == 30)
 	{
+		printf ("hi\n");
 		fire_everything(hook->minf);
 		hook->timer = 0;
-		hook->is_all_fired = 1;
+		//hook->is_all_fired = 1;
 	}
 	if (!hook->anime->is_player_mv && hook->player_sleeper == 20300)
 	{
