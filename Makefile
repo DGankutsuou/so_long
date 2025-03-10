@@ -28,7 +28,7 @@ fclean:
 	rm -f so_long
 
 easy: fclean all
-	make clean -C libft
+	make fclean -C libft
 	clear
 
 re: fclean all
