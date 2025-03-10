@@ -6,11 +6,18 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/10 21:29:18 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:43:24 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	exiter(t_hook *hook)
+{
+	distroyer(hook);
+	exit(0);
+	return (0);
+}
 
 int	key_hook(int key, t_hook *hook)
 {
@@ -91,5 +98,6 @@ void	game_starter(t_map *minf, t_things *thing)
 	print_move(&hook);
 	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop_hook(mlx, animation, &hook);
+	mlx_hook(win, 17, 0, exiter, &hook);
 	mlx_loop(mlx);
 }
