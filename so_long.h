@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 16:22:45 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:46:54 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_hook
 	int			player_mv_sleeper;
 	int			fire_sleeper;
 	int			timer;
+	int			is_all_fired;
 }	t_hook;
 
 typedef struct s_move

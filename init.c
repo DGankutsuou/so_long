@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 16:26:59 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:47:12 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	init_hook(t_hook *hook)
 	hook->player_mv_sleeper = 0;
 	hook->fire_sleeper = 0;
 	hook->timer = 0;
+	hook->is_all_fired = 0;
 }
 
 void	init_clct_frames(t_anime *anime)
