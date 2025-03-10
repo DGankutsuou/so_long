@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:39:22 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 20:56:44 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:28:46 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	fire_everything(t_map *minf);
 void	error(char *msg, int stat);
 void	free_map(char **map);
 
-void	init_things(t_things *thing, void *mlx);
+void	init_things(t_things *thing, void *mlx, t_hook *hook);
 void	init_player_frames(t_anime *anime);
 void	init_clct_frames(t_anime *anime);
 void	init_hook(t_hook *hook);
@@ -132,6 +132,7 @@ void	arive_l(t_hook *hook, int *idx, int *growth);
 void	arive_r(t_hook *hook, int *idx, int *growth);
 void	arive_u(t_hook *hook, int *idx, int *growth);
 void	arive_d(t_hook *hook, int *idx, int *growth);
+void	print_move(t_hook *hook);
 void	distroyer(t_hook *hook);
 
 #endif

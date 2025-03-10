@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:43:59 by blessed           #+#    #+#             */
-/*   Updated: 2025/03/10 20:57:09 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:29:18 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	game_starter(t_map *minf, t_things *thing)
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 64 * minf->coloms, 64 * minf->rows, "so_long");
-	init_things(thing, mlx);
-	draw_all_things(minf, thing, mlx, win);
 	init_player_frames(&anime);
 	init_clct_frames(&anime);
 	init_enemy(&anime);
@@ -88,6 +86,9 @@ void	game_starter(t_map *minf, t_things *thing)
 	hook.win = win;
 	hook.anime = &anime;
 	init_hook(&hook);
+	init_things(thing, mlx, &hook);
+	draw_all_things(minf, thing, mlx, win);
+	print_move(&hook);
 	mlx_key_hook(win, key_hook, &hook);
 	mlx_loop_hook(mlx, animation, &hook);
 	mlx_loop(mlx);

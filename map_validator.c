@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:36:26 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/01 14:30:02 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:34:09 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	map_validator(char *map, t_map *map_inf)
 {
 	int		fd;
 
-	if (ft_strlen(map) < 5)
+	if (ft_strlen(map) < 10)
 		error("Error\ninvalid map file", 1);
 	else if (ft_strncmp(map + ft_strlen(map) - 4, ".ber", 5) != 0)
 		error("Error\ninvalid map file", 1);

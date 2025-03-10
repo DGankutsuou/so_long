@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:09:45 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 20:54:15 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:27:35 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	clct_scared(t_hook *hook)
 	{
 		mlx_destroy_image(hook->mlx, hook->thing->clct);
 		hook->thing->clct = mlx_xpm_file_to_image(hook->mlx, img, &x, &y);
+		if (!hook->thing->clct)
+		{
+			distroyer(hook);
+			error("Error: can't find textures", 1);
+		}
 		draw_clct(hook);
 		hook->clct_frame++;
 	}
@@ -38,6 +43,11 @@ void	player_breath(t_hook *hook)
 	img = hook->anime->mainp[hook->player_frame % 4];
 	mlx_destroy_image(hook->mlx, hook->thing->ply);
 	hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, img, &x, &y);
+	if (!hook->thing->ply)
+	{
+		distroyer(hook);
+		error("Error: can't find textures", 1);
+	}
 	draw_player(hook);
 	hook->player_frame++;
 	hook->player_sleeper = 0;
@@ -66,6 +76,11 @@ void	fire_animation(t_hook *hook)
 	img = hook->anime->firef[hook->fire_frame % 4];
 	mlx_destroy_image(hook->mlx, hook->thing->fire);
 	hook->thing->fire = mlx_xpm_file_to_image(hook->mlx, img, &x, &y);
+	if (!hook->thing->fire)
+	{
+		distroyer(hook);
+		error("Error: can't find textures", 1);
+	}
 	draw_fire(hook);
 	hook->fire_frame++;
 	hook->fire_sleeper = 0;

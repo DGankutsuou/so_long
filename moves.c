@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blessed <blessed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 21:19:05 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:15:51 by blessed          ###   ########.fr       */
+/*   Updated: 2025/03/10 21:17:57 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	up(t_hook *hook)
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, mv.pf, \
 		&mv.a, &mv.b);
+		if (!hook->thing->ply)
+			(distroyer(hook), error("Error: can't find textures", 1));
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64, mv.y * 64 - growth);
 		idx++;
@@ -55,6 +57,8 @@ void	right(t_hook *hook)
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, mv.pf, \
 		&mv.a, &mv.b);
+		if (!hook->thing->ply)
+			(distroyer(hook), error("Error: can't find textures", 1));
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64 + growth, mv.y * 64);
 		idx++;
@@ -81,6 +85,8 @@ void	left(t_hook *hook)
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, mv.pf, \
 		&mv.a, &mv.b);
+		if (!hook->thing->ply)
+			(distroyer(hook), error("Error: can't find textures", 1));
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64 - growth, mv.y * 64);
 		idx++;
@@ -107,6 +113,8 @@ void	down(t_hook *hook)
 		mlx_destroy_image(hook->mlx, hook->thing->ply);
 		hook->thing->ply = mlx_xpm_file_to_image(hook->mlx, mv.pf, \
 		&mv.a, &mv.b);
+		if (!hook->thing->ply)
+			(distroyer(hook), error("Error: can't find textures", 1));
 		mlx_put_image_to_window(hook->mlx, hook->win, hook->thing->ply, \
 		mv.x * 64, mv.y * 64 + growth);
 		idx++;
