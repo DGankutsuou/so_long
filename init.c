@@ -6,7 +6,7 @@
 /*   By: aabouriz <aabouriz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:18:49 by aabouriz          #+#    #+#             */
-/*   Updated: 2025/03/10 21:30:44 by aabouriz         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:40:54 by aabouriz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	init_things(t_things *thing, void *mlx, t_hook *hook)
 	thing->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &x, &y);
 	thing->fire = mlx_xpm_file_to_image(mlx, "textures/fire1.xpm", &x, &y);
 	if (!thing->wall || !thing->grd || !thing->clct || !thing->ply || \
-		!thing->exit || !thing->fire)
-		{
-			distroyer(hook);
-			error("Error: can't find textures", 1);
-		}
+	!thing->exit || !thing->fire)
+	{
+		distroyer(hook);
+		error("Error: can't find textures", 1);
+	}
 }
 
 void	init_player_frames(t_anime *anime)
